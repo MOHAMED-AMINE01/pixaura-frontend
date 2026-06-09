@@ -48,6 +48,14 @@ type ClientMonthAccessItem = {
   recordId: string | null;
 };
 
+type CapacitySlot = {
+  id: string;
+  label: string;
+  startTime: string;
+  endTime: string;
+  capacity: number;
+};
+
 export default function ParametresPage() {
   const router = useRouter();
   const [blocked, setBlocked] = useState<any[]>([]);
@@ -60,6 +68,8 @@ export default function ParametresPage() {
   const [loadingDay, setLoadingDay] = useState(false);
   const [monthAccess, setMonthAccess] = useState<ClientMonthAccessItem[]>([]);
   const [loadingMonths, setLoadingMonths] = useState(false);
+  const [capacities, setCapacities] = useState<CapacitySlot[]>([]);
+  const [savingCapacity, setSavingCapacity] = useState<string | null>(null);
 
   const load = async () => {
     const token = getToken();
@@ -84,7 +94,33 @@ export default function ParametresPage() {
     } finally {
       setLoadingMonths(false);
     }
+    try {
+      const caps = await apiFetch<{ slots: CapacitySlot[] }>("/calendar/slot-capacities", {}, token);
+      setCapacities(caps.slots || []);
+    } catch {
+      setCapacities([]);
+    }
   };
+
+  async function changeCapacity(slotId: string, capacity: number) {
+    if (capacity < 1 || capacity > 10) return;
+    setSavingCapacity(slotId);
+    // Optimistic update
+    setCapacities((prev) => prev.map((s) => (s.id === slotId ? { ...s, capacity } : s)));
+    try {
+      const token = getToken();
+      await apiFetch(
+        "/calendar/slot-capacities",
+        { method: "PUT", body: JSON.stringify({ slotId, capacity }) },
+        token
+      );
+    } catch {
+      // Revert on failure
+      await load();
+    } finally {
+      setSavingCapacity(null);
+    }
+  }
 
   async function setMonthOpen(year: number, month: number, openForClients: boolean) {
     const token = getToken();
@@ -239,6 +275,56 @@ export default function ParametresPage() {
                         Fermer le mois
                       </button>
                     )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </ChromeCard>
+
+        <ChromeCard
+          title="Capacité par créneau (nombre de vidéastes)"
+          subtitle="Nombre de clients pouvant réserver le même créneau. Ex. 2 = deux tournages en parallèle. Un créneau ne se ferme que lorsqu'il est complet."
+          className="mb-8 border-white/10"
+          innerClassName="p-5 sm:p-7 md:p-8"
+        >
+          {capacities.length === 0 ? (
+            <p className="text-base text-neutral-400">Chargement des créneaux…</p>
+          ) : (
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 md:gap-5">
+              {capacities.map((s) => (
+                <div
+                  key={s.id}
+                  className="flex items-center justify-between gap-4 rounded-xl border border-white/15 bg-black/30 p-4 sm:p-5"
+                >
+                  <div className="min-w-0">
+                    <p className="text-base font-bold text-white sm:text-lg">{s.label}</p>
+                    <p className="text-sm uppercase tracking-wider text-neutral-400">
+                      {s.startTime} – {s.endTime}
+                    </p>
+                  </div>
+                  <div className="flex shrink-0 items-center gap-2">
+                    <button
+                      type="button"
+                      disabled={savingCapacity === s.id || s.capacity <= 1}
+                      onClick={() => changeCapacity(s.id, s.capacity - 1)}
+                      className="flex h-10 w-10 items-center justify-center rounded-lg border border-white/15 text-xl font-bold text-white transition-colors hover:bg-white/10 disabled:opacity-40"
+                      aria-label="Diminuer la capacité"
+                    >
+                      −
+                    </button>
+                    <span className="w-8 text-center text-2xl font-black tabular-nums text-violet-200">
+                      {s.capacity}
+                    </span>
+                    <button
+                      type="button"
+                      disabled={savingCapacity === s.id || s.capacity >= 10}
+                      onClick={() => changeCapacity(s.id, s.capacity + 1)}
+                      className="flex h-10 w-10 items-center justify-center rounded-lg border border-white/15 text-xl font-bold text-white transition-colors hover:bg-white/10 disabled:opacity-40"
+                      aria-label="Augmenter la capacité"
+                    >
+                      +
+                    </button>
                   </div>
                 </div>
               ))}

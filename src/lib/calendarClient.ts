@@ -182,6 +182,12 @@ export type DaySlot = {
   endTime: string;
   available: boolean;
   reason: string;
+  /** Capacité du créneau (nb de clients/vidéastes en parallèle). */
+  capacity?: number;
+  /** Nombre de réservations validées sur ce créneau. */
+  booked?: number;
+  /** Places restantes (capacity - booked). */
+  remaining?: number;
 };
 
 export const FALLBACK_DAY_SLOTS: DaySlot[] = [

@@ -517,6 +517,21 @@ export function P2cRequestForm({
                             <span className="mt-1 block font-mono text-[11px] text-neutral-400">
                               {s.startTime} – {s.endTime}
                             </span>
+                            {typeof s.capacity === "number" && s.capacity > 1 ? (
+                              <span
+                                className={`mt-1.5 inline-block rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide ${
+                                  s.available
+                                    ? "bg-emerald-500/20 text-emerald-200"
+                                    : "bg-zinc-700/60 text-zinc-400"
+                                }`}
+                              >
+                                {s.available
+                                  ? `${s.remaining ?? s.capacity}/${s.capacity} place${(s.remaining ?? s.capacity) > 1 ? "s" : ""}`
+                                  : s.reason === "reserve"
+                                    ? "Complet"
+                                    : "Indisponible"}
+                              </span>
+                            ) : null}
                           </button>
                         );
                       })}

@@ -124,7 +124,7 @@ export default function Home() {
     // Start loading early (but keep it hidden until we decide to show it)
     try {
       video.load()
-    } catch {}
+    } catch { }
 
     return () => {
       video.removeEventListener('canplay', handleCanPlay)
@@ -148,7 +148,7 @@ export default function Home() {
       } catch (error) {
         // Autoplay was prevented, try again after user interaction
         const handleUserInteraction = () => {
-          video.play().catch(() => {})
+          video.play().catch(() => { })
           document.removeEventListener('click', handleUserInteraction)
           document.removeEventListener('touchstart', handleUserInteraction)
         }
@@ -306,7 +306,7 @@ export default function Home() {
             <ContactHomeSection />
             <Footer />
           </div>
-          
+
           {/* Cookie Consent Banner - S'affiche uniquement après l'intro sur la page d'accueil */}
           <CookieConsent />
         </>
