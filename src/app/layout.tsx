@@ -160,12 +160,9 @@ export default function RootLayout({
             `,
           }}
         />
-        {/* Only preload critical background image for mobile - NO VIDEO PRELOADS */}
-        {process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME ? (
-          <link rel="preload" href={`https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/q_auto,f_auto,fl_immutable_cache/back-noiree`} as="image" />
-        ) : (
-          <link rel="preload" href="/Banque d_images/backnoiree.png" as="image" />
-        )}
+        {/* Only preload critical background image for mobile - NO VIDEO PRELOADS.
+            backnoiree.png est servi en local (LOCAL_ONLY_PATHS), pas via Cloudinary. */}
+        <link rel="preload" href="/Banque d_images/backnoiree.png" as="image" />
       </head>
       <body
         className={`${montserrat.className} ${spaceGrotesk.variable} antialiased bg-transparent text-foreground`}

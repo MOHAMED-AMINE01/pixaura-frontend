@@ -171,7 +171,10 @@ import cloudinaryMapping from '../../cloudinary-mapping.json'
 // Aliases internes utilisés dans le code mais qui ne correspondent pas
 // à un vrai fichier dans public/Banque d_images/.
 const ASSET_ALIASES: Record<string, string> = {
-  '/Banque d_images/background-web-desktop.mp4': 'background-web-desktop',
+  // Pointe vers l'asset vidéo réellement uploadé (même contenu que
+  // "Copie de BACKGROUND WEB DESKTOP.mp4"). L'ID "background-web-desktop"
+  // n'existe pas sur Cloudinary.
+  '/Banque d_images/background-web-desktop.mp4': 'fwmgov63hkv3ntnqpdll',
 }
 
 /**
