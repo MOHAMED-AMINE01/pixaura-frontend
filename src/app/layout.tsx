@@ -162,7 +162,7 @@ export default function RootLayout({
         />
         {/* Only preload critical background image for mobile - NO VIDEO PRELOADS */}
         {process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME ? (
-          <link rel="preload" href={`https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/q_auto,f_auto,fl_immutable_cache/pixaura/back-noiree.jpg`} as="image" />
+          <link rel="preload" href={`https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/q_auto,f_auto,fl_immutable_cache/back-noiree`} as="image" />
         ) : (
           <link rel="preload" href="/Banque d_images/backnoiree.png" as="image" />
         )}
