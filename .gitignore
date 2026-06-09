@@ -1,0 +1,48 @@
+# Node
+node_modules/
+.pnpm-lock.yaml
+package-lock.json
+
+# Next.js
+.next/
+out/
+.vercel/
+
+# Env
+.env.local
+.env*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
+
+# Cache
+.cache/
+
+# Assets Banque d_images : servis via Cloudinary (CDN), exclus du repo car trop lourds.
+# On ignore tout le dossier...
+public/Banque d_images/*
+# ...sauf les fichiers pré-compressés servis EXCLUSIVEMENT en local (cf. LOCAL_ONLY_PATHS
+# dans src/lib/cloudinary.ts) qui doivent être déployés sur Vercel.
+!public/Banque d_images/humind-white.png
+!public/Banque d_images/PIXaura-soft white.png
+!public/Banque d_images/art1.jpg
+!public/Banque d_images/art2.jpg
+!public/Banque d_images/backnoiree.png
+!public/Banque d_images/Copie de M7_09197.jpg
+!public/Banque d_images/Copie de M7_01248.jpg
+!public/Banque d_images/Copie de M7_03372.jpg
+!public/Banque d_images/Copie de DSC04796.jpg
+!public/Banque d_images/Copie de M7_00487.jpg
+# Audio d'intro, non hébergé sur Cloudinary (cf. src/components/immersive-intro.tsx)
+!public/Banque d_images/mixkit-relaxing-harp-sweep-2628.wav

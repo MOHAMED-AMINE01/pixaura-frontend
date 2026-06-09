@@ -1,0 +1,59 @@
+/* Styles backoffice (login, membre, admin) — importés par les layouts dédiés, pas la vitrine */
+
+.backoffice-route--light {
+  min-height: 100vh;
+  background: #f6f7f9;
+  color: #101010;
+  font-size: 1rem;
+  line-height: 1.55;
+}
+
+.backoffice-route main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.backoffice-route main.member-main-wide {
+  max-width: min(100%, 1800px);
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+@media (min-width: 640px) {
+  .backoffice-route main.member-main-wide {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+.backoffice-route input,
+.backoffice-route textarea,
+.backoffice-route select {
+  border: 1px solid #d3d4d8;
+  border-radius: 8px;
+  padding: 10px;
+  width: 100%;
+}
+
+.backoffice-route button {
+  cursor: pointer;
+}
+
+.admin-y2k input[type="date"],
+.admin-y2k input[type="datetime-local"] {
+  color-scheme: dark;
+}
+
+.admin-y2k input[type="date"]::-webkit-calendar-picker-indicator,
+.admin-y2k input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+  width: 1.25rem;
+  height: 1.25rem;
+  cursor: pointer;
+  opacity: 1;
+  margin-left: 0.25rem;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffffff'%3E%3Cpath d='M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
