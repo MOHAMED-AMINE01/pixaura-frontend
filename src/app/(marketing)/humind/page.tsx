@@ -374,7 +374,7 @@ export default function HumindPage() {
                       controls
                       playsInline
                       className="absolute inset-0 h-full w-full object-contain"
-                      poster={getAssetUrl("/Banque d_images/Copie de M7_03194.jpg", "image")}
+                      poster={getAssetUrl("/Banque d_images/Copie de M7_03372.jpg", "image")}
                     />
 
                     {/* Back button over video - top-left, styled like white pill CTA */}
@@ -394,7 +394,7 @@ export default function HumindPage() {
                     {/* Background image */}
                     <div className="absolute inset-0">
                       <Image
-                        src={getAssetUrl("/Banque d_images/Copie de M7_03194.jpg", "image")}
+                        src={getAssetUrl("/Banque d_images/Copie de M7_03372.jpg", "image")}
                         alt="Stradale Events x Humind"
                         fill
                         priority

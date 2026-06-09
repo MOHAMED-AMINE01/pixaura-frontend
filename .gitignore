@@ -9,8 +9,10 @@ out/
 .vercel/
 
 # Env
+.env
 .env.local
 .env*.local
+.env.example
 
 # IDE
 .vscode/

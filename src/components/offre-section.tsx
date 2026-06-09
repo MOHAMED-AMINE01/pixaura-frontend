@@ -46,7 +46,7 @@ export function OffreSection() {
     suivi: {
       title: t("offreHome.suiviTitle"),
       subtitle: t("offreHome.suiviSubtitle"),
-      image: "/Banque d_images/Copie de M7_03194.jpg",
+      image: "/Banque d_images/Copie de M7_03372.jpg",
       intro: t("offreHome.suiviIntro"),
       points: [
         t("offreHome.suiviPoint1"),
@@ -100,7 +100,7 @@ export function OffreSection() {
       price: t("offreHome.signaturePrice"),
       priceDetail: t("offreHome.signaturePriceDetail"),
       description: t("offreHome.signatureDesc"),
-      image: "/Banque d_images/Copie de M7_03194.jpg",
+      image: "/Banque d_images/Copie de M7_09197.jpg",
       features: [
         t("offreHome.signatureFeature1"),
         t("offreHome.signatureFeature2"),
