@@ -684,11 +684,26 @@ export default function OffrePage() {
                   </div>
                   
                   {/* Expandable Details Section - Enhanced Typography */}
-                  <div 
-                    className={`relative z-10 mt-4 overflow-hidden transition-all duration-700 ease-in-out ${expandedCard === 'suivi' ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'}`}
+                  <div
+                    className={`relative z-10 mt-4 overflow-hidden transition-all duration-700 ease-in-out ${expandedCard === 'suivi' ? 'max-h-[3000px] opacity-100' : 'max-h-0 opacity-0'}`}
                   >
                     <div className="pt-6 border-t border-white/10">
-                      <p className="text-gray-200 text-base leading-relaxed mb-5 text-left font-medium" style={{ 
+                      {/* Image Card - Premium Analytics Visual */}
+                      <div className="relative w-full h-96 rounded-2xl overflow-hidden mb-6 border border-white/10 group/image">
+                        <img
+                          src={getAssetUrl("/Banque d_images/Copie de M7_03194.jpg", "image")}
+                          alt="Analytics Dashboard"
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover/image:scale-105"
+                        />
+                        {/* Gradient Overlay */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+                        {/* ANALYTICS Badge */}
+                        <div className="absolute bottom-6 left-6 px-4 py-2 rounded-full border border-white/30 bg-black/60 backdrop-blur-md">
+                          <span className="text-white text-xs font-bold tracking-[0.15em] uppercase">Analytics</span>
+                        </div>
+                      </div>
+
+                      <p className="text-gray-200 text-base leading-relaxed mb-5 text-left font-medium" style={{
                         fontFamily: 'Montserrat, sans-serif',
                         lineHeight: '1.7',
                       }}>
@@ -696,7 +711,7 @@ export default function OffrePage() {
                       </p>
                       <ul className="space-y-3 mb-5 text-left">
                         {differentiatorDetails.suivi.points.map((point, index) => (
-                          <li key={index} className="text-gray-200 text-base leading-relaxed flex items-start font-medium" style={{ 
+                          <li key={index} className="text-gray-200 text-base leading-relaxed flex items-start font-medium" style={{
                             fontFamily: 'Montserrat, sans-serif',
                             lineHeight: '1.6',
                           }}>
@@ -705,7 +720,7 @@ export default function OffrePage() {
                           </li>
                         ))}
                       </ul>
-                      <p className="text-white/95 text-base leading-relaxed text-left font-medium" style={{ 
+                      <p className="text-white/95 text-base leading-relaxed text-left font-medium" style={{
                         fontFamily: 'Montserrat, sans-serif',
                         lineHeight: '1.7',
                       }}>
