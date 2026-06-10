@@ -5,6 +5,7 @@ const nextConfig = {
   },
   images: {
     // IMPORTANT: keep Next/Image optimization ON so thumbnails/lightbox don't load original huge assets
+    domains: ['res.cloudinary.com'],
   },
   // Optimize for Vercel deployment
   experimental: {
