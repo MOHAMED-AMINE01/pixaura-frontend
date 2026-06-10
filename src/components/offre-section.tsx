@@ -7,6 +7,7 @@ import { Check, ArrowRight } from "lucide-react"
 import { Reveal } from "@/components/reveal"
 import { OffreModal } from "@/components/offre-modal"
 import { useTranslation } from "@/contexts/translation-context"
+import { getAssetUrl } from "@/lib/cloudinary"
 
 export function OffreSection() {
   const { t } = useTranslation()
@@ -15,7 +16,7 @@ export function OffreSection() {
     production: {
       title: t("offreHome.productionTitle"),
       subtitle: t("offreHome.productionSubtitle"),
-      image: "/Banque d_images/Copie de M7_00487.jpg",
+      image: getAssetUrl("/Banque d_images/Copie de M7_00487.jpg", "image"),
       intro: t("offreHome.productionIntro"),
       points: [
         t("offreHome.productionPoint1"),
@@ -31,7 +32,7 @@ export function OffreSection() {
     creativite: {
       title: t("offreHome.creativityTitle"),
       subtitle: t("offreHome.creativitySubtitle"),
-      image: "/Banque d_images/art1.jpg",
+      image: getAssetUrl("/Banque d_images/art1.jpg", "image"),
       intro: t("offreHome.creativityIntro"),
       points: [
         t("offreHome.creativityPoint1"),
@@ -46,7 +47,7 @@ export function OffreSection() {
     suivi: {
       title: t("offreHome.suiviTitle"),
       subtitle: t("offreHome.suiviSubtitle"),
-      image: "/Banque d_images/Copie de M7_03372.jpg",
+      image: getAssetUrl("/Banque d_images/Copie de M7_03372.jpg", "image"),
       intro: t("offreHome.suiviIntro"),
       points: [
         t("offreHome.suiviPoint1"),
@@ -66,7 +67,7 @@ export function OffreSection() {
       price: t("offreHome.starterPrice"),
       priceDetail: t("offreHome.starterPriceDetail"),
       description: t("offreHome.starterDesc"),
-      image: "/Banque d_images/Copie de M7_00487.jpg",
+      image: getAssetUrl("/Banque d_images/Copie de M7_00487.jpg", "image"),
       features: [
         t("offreHome.starterFeature1"),
         t("offreHome.starterFeature2"),
@@ -83,7 +84,7 @@ export function OffreSection() {
       price: t("offreHome.croissancePrice"),
       priceDetail: t("offreHome.croissancePriceDetail"),
       description: t("offreHome.croissanceDesc"),
-      image: "/Banque d_images/art1.jpg",
+      image: getAssetUrl("/Banque d_images/art1.jpg", "image"),
       features: [
         t("offreHome.croissanceFeature1"),
         t("offreHome.croissanceFeature2"),
@@ -100,7 +101,7 @@ export function OffreSection() {
       price: t("offreHome.signaturePrice"),
       priceDetail: t("offreHome.signaturePriceDetail"),
       description: t("offreHome.signatureDesc"),
-      image: "/Banque d_images/Copie de M7_09197.jpg",
+      image: getAssetUrl("/Banque d_images/Copie de M7_09197.jpg", "image"),
       features: [
         t("offreHome.signatureFeature1"),
         t("offreHome.signatureFeature2"),

@@ -6,6 +6,7 @@ import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import { Shield, Cookie, BarChart3, User, Lock, FileText, ArrowRight } from "lucide-react"
 import { useTranslation } from "@/contexts/translation-context"
+import { getAssetUrl } from "@/lib/cloudinary"
 
 export default function CookiesPage() {
   const { t } = useTranslation()
@@ -76,7 +77,7 @@ export default function CookiesPage() {
       <div className="pointer-events-none fixed inset-0 -z-10">
         {/* Background image - visible on desktop */}
         <img
-          src="/Banque d_images/ippppp1.png"
+          src={getAssetUrl("/Banque d_images/ippppp1.png", "image")}
           alt="Background"
           className="hidden md:block h-full w-full object-cover"
           style={{
@@ -89,7 +90,7 @@ export default function CookiesPage() {
         />
         {/* Background image - visible only on mobile */}
         <img
-          src="/Banque d_images/backnoiree.png"
+          src={getAssetUrl("/Banque d_images/backnoiree.png", "image")}
           alt="Background"
           className="block md:hidden h-full w-full object-cover"
           style={{

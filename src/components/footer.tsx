@@ -4,6 +4,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { Mail, Phone, MapPin, Clock, Instagram, Linkedin, Music2, Youtube } from "lucide-react"
 import { useTranslation } from "@/contexts/translation-context"
+import { getAssetUrl } from "@/lib/cloudinary"
 
 export function Footer() {
   const { t, language } = useTranslation()
@@ -40,7 +41,7 @@ export function Footer() {
               {/* Glow Effect Behind Logo */}
               <div className="absolute -inset-4 bg-gradient-to-r from-cyan-400/20 via-purple-500/20 to-cyan-400/20 rounded-2xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               <Image
-                src="/Banque d_images/PIXaura-soft white.png"
+                src={getAssetUrl("/Banque d_images/PIXaura-soft white.png", "image")}
                 alt="Pixaura International"
                 width={140}
                 height={42}
@@ -53,7 +54,7 @@ export function Footer() {
               {/* Glow Effect Behind Logo */}
               <div className="absolute -inset-4 bg-gradient-to-r from-cyan-400/20 via-purple-500/20 to-cyan-400/20 rounded-2xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               <Image
-                src="/Banque d_images/PIXaura-soft white.png"
+                src={getAssetUrl("/Banque d_images/PIXaura-soft white.png", "image")}
                 alt="Pixaura International"
                 width={140}
                 height={42}

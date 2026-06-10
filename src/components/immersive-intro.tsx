@@ -770,7 +770,6 @@ export function ImmersiveIntro({ onComplete }: ImmersiveIntroProps = {}) {
       />
 
       <div className={`absolute inset-0 ${overlayTone}`} />
-      <div className="absolute inset-0 bg-[url('/Banque d_images/noise.png')] opacity-[0.08] mix-blend-overlay" />
 
       {stage === "loading" && (
         <div className="relative z-10 flex h-full w-full flex-col justify-between px-4 py-6 sm:px-8 sm:py-14 text-white md:px-16">

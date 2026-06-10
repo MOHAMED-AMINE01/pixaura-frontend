@@ -7,6 +7,7 @@ import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import { Factory, Sparkles, BarChart3, Check, Calendar, FileText, ChevronDown, X } from "lucide-react"
 import * as Dialog from "@radix-ui/react-dialog"
+import { getAssetUrl } from "@/lib/cloudinary"
 
 // Structure de données pour les fiches détaillées
 const differentiatorDetails = {
@@ -1455,7 +1456,7 @@ export default function OffrePage() {
                       
                       {/* Main Image */}
                       <Image
-                        src="/Banque d_images/Copie de M7_09214.jpg"
+                        src={getAssetUrl("/Banque d_images/Copie de M7_09214.jpg", "image")}
                         alt="Conférence Pixaura - Événement exclusif"
                         fill
                         className="object-cover group-hover/image:scale-110 transition-transform duration-700"

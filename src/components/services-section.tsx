@@ -142,7 +142,7 @@ function PhotoSlider() {
                 }`}
               >
                 <img
-                  src={src}
+                  src={getAssetUrl(src, "image")}
                   alt={`Photo ${index + 1}`}
                   className="w-full h-full object-cover"
                   onError={() => handleImageError(index)}
@@ -249,7 +249,7 @@ function ElasticGridBenefits() {
               {/* Image Section */}
               <div className="relative w-full md:w-[35%] h-72 sm:h-80 md:h-full overflow-hidden flex-shrink-0">
                 <Image
-                  src={benefit.imagePath}
+                  src={getAssetUrl(benefit.imagePath, "image")}
                   alt={benefit.title}
                   fill
                   className="object-cover transition-transform duration-700 group-hover:scale-110"
@@ -449,7 +449,7 @@ export function ServicesSection() {
           {/* Image - Right Side - Comme la version originale : 1/3 de la largeur, sujet centré */}
           <div className="absolute inset-y-0 right-0 h-full w-full md:w-1/3 overflow-hidden rounded-r-[24px] sm:rounded-r-[32px] md:rounded-r-[40px] opacity-30 md:opacity-100">
             <Image
-              src="/Banque d_images/Copie de M7_00487.jpg"
+              src={getAssetUrl("/Banque d_images/Copie de M7_00487.jpg", "image")}
               alt="Nos expertises"
               fill
               className="object-cover object-center brightness-110 md:brightness-125 contrast-105 md:contrast-120"
@@ -567,7 +567,6 @@ export function ServicesSection() {
               >
                 <div className="pointer-events-none absolute -inset-x-16 top-[-40%] h-[420px] rounded-full bg-[radial-gradient(circle,_rgba(0,115,255,0.36)_0%,_transparent_65%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-transparent" />
-                <div className="pointer-events-none absolute inset-0 bg-[url('/Banque d_images/noise.png')] opacity-[0.12] mix-blend-screen" />
 
                 <div className="relative flex flex-col gap-4 sm:gap-6 flex-1">
                   {/* Header - Always visible */}

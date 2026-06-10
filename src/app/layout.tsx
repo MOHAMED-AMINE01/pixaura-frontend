@@ -4,6 +4,7 @@ import { Montserrat, Space_Grotesk } from "next/font/google"
 import "./globals.css"
 import { TranslationProvider } from "@/contexts/translation-context"
 import { ErrorBoundaryWrapper } from "@/components/error-boundary-wrapper"
+import { getAssetUrl } from "@/lib/cloudinary"
 
 // Primary premium font for the whole site (outside intros/loading)
 const montserrat = Montserrat({ subsets: ["latin"], variable: "--font-sans" })
@@ -162,7 +163,7 @@ export default function RootLayout({
         />
         {/* Only preload critical background image for mobile - NO VIDEO PRELOADS.
             backnoiree.png est servi en local (LOCAL_ONLY_PATHS), pas via Cloudinary. */}
-        <link rel="preload" href="/Banque d_images/backnoiree.png" as="image" />
+        <link rel="preload" href={getAssetUrl("/Banque d_images/backnoiree.png", "image")} as="image" />
       </head>
       <body
         className={`${montserrat.className} ${spaceGrotesk.variable} antialiased bg-transparent text-foreground`}

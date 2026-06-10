@@ -5,12 +5,13 @@ import Image from "next/image"
 import Link from "next/link"
 import { Reveal } from "@/components/reveal"
 import { useTranslation } from "@/contexts/translation-context"
+import { getAssetUrl } from "@/lib/cloudinary"
 
 const featuredEpisode = {
   title: "IL A JOUÉ AVEC MARADONA : RAÚL VARGAS RÍOS SUR HUMIND",
   description:
     "Interview exclusive avec Raúl Vargas Ríos sur son parcours exceptionnel dans le football professionnel.",
-  image: "/Banque d_images/Copie de M7_03385.jpg",
+  image: getAssetUrl("/Banque d_images/Copie de M7_03385.jpg", "image"),
   duration: "43:00",
   format: "YouTube & Podcast",
   guest: "Raúl Vargas Ríos",

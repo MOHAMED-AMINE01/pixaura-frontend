@@ -615,24 +615,14 @@ export default function AgencePage() {
                       {/* Subtle Background Gradient */}
                       <div className="absolute inset-0 bg-gradient-to-br from-white/2 via-transparent to-white/2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
                       
-                      {/* Logo Container - Enhanced Visibility */}
+                      {/* Partner Name Wordmark */}
                       <div className="relative w-full h-44 mb-6 flex items-center justify-center z-10">
-                        <Image
-                          src={partner.logo}
-                          alt={partner.name}
-                          fill
-                          className={`object-contain transition-all duration-500 group-hover:scale-105 ${
-                            partner.name === "Shiftech" 
-                              ? "opacity-100 brightness-110 contrast-110" 
-                              : "opacity-95 group-hover:opacity-100"
-                          }`}
-                          sizes="(max-width: 768px) 100vw, 33vw"
-                          style={{
-                            filter: partner.name === "Shiftech" 
-                              ? "brightness(1.15) contrast(1.15) drop-shadow(0 0 8px rgba(255, 255, 255, 0.2))" 
-                              : "drop-shadow(0 0 8px rgba(255, 255, 255, 0.15))",
-                          }}
-                        />
+                        <span className="text-4xl md:text-5xl font-black text-white/90 tracking-tight select-none" style={{
+                          fontFamily: 'Montserrat, sans-serif',
+                          textShadow: '0 0 30px rgba(255,255,255,0.15)',
+                        }}>
+                          {partner.name}
+                        </span>
                       </div>
                       
                       {/* Partner Name - Professional Typography */}

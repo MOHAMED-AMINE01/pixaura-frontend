@@ -50,7 +50,6 @@ export function GlobalAtmosphere() {
           }}
         />
       )}
-      <div className="absolute inset-0 bg-[url('/Banque d_images/noise.png')] opacity-[0.05]" />
     </div>
   )
 }
