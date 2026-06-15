@@ -4,7 +4,14 @@ export type AuthUser = {
   id: string;
   email: string;
   role: "admin" | "client";
-  client?: { _id: string; companyName: string; clientType: "paire" | "impaire" | "vip" };
+  client?: {
+    _id: string;
+    companyName: string;
+    clientType: "paire" | "impaire" | "vip";
+    managerName?: string;
+    phone?: string;
+    email?: string;
+  };
 };
 
 const TOKEN_KEY = "pixaura_token";

@@ -8,8 +8,9 @@ import { apiFetch } from "@/lib/api";
 import { getToken, getUser } from "@/lib/auth";
 import { ChromeCard } from "@/components/admin/Y2KAdminLayout";
 import { MemberContactPanel } from "@/components/member/MemberBrandImagery";
-import { ShootingLocationInput, isShootingCityValid } from "@/components/forms/ShootingLocationInput";
+import { ShootingLocationInput, isShootingAddressComplete } from "@/components/forms/ShootingLocationInput";
 import { COMMUNICATION_AXES, isValidCommunicationAxis } from "@/lib/communicationAxes";
+import { isValidPhone } from "@/lib/phone";
 import {
   CALENDAR_API_BASE,
   FALLBACK_DAY_SLOTS,
@@ -38,7 +39,8 @@ export type P2cFormState = {
   timeSlotId: string;
   shootingAddress: string;
   technicalConstraints: string;
-  onsiteContact: string;
+  onsiteContactName: string;
+  onsiteContactPhone: string;
   freeComment: string;
 };
 
@@ -55,11 +57,15 @@ function validateFormFields(form: P2cFormState): string | null {
   if (!form.projectDetails.trim()) return "Le champ Projet / demande est obligatoire.";
   if (!form.requestedDate) return "Choisissez une date dans le calendrier.";
   if (!form.timeSlotId) return "Choisissez un créneau ou la journée complète.";
-  if (!isShootingCityValid(form.shootingAddress)) {
-    return "Choisissez une ville française dans la liste (code postal + nom).";
+  if (!isShootingAddressComplete(form.shootingAddress)) {
+    return "Renseignez l'adresse de tournage : rue et numéro + ville (code postal).";
   }
   if (!form.technicalConstraints.trim()) return "Le champ Contraintes techniques est obligatoire.";
-  if (!form.onsiteContact.trim()) return "Le champ Contact sur place est obligatoire.";
+  if (!form.onsiteContactName.trim()) return "Le nom du contact sur place est obligatoire.";
+  if (!form.onsiteContactPhone.trim()) return "Le numéro du contact sur place est obligatoire.";
+  if (!isValidPhone(form.onsiteContactPhone)) {
+    return "Le numéro du contact sur place doit être un numéro de téléphone valide.";
+  }
   return null;
 }
 
@@ -74,7 +80,8 @@ const EMPTY_FORM: P2cFormState = {
   timeSlotId: "",
   shootingAddress: "",
   technicalConstraints: "",
-  onsiteContact: "",
+  onsiteContactName: "",
+  onsiteContactPhone: "",
   freeComment: "",
 };
 
@@ -96,7 +103,10 @@ export function requestToFormState(r: Record<string, unknown>): P2cFormState {
     timeSlotId: String(r.timeSlotId || ""),
     shootingAddress: String(r.shootingAddress || ""),
     technicalConstraints: String(r.technicalConstraints || ""),
-    onsiteContact: String(r.onsiteContact || ""),
+    // Migration lazy : les anciennes demandes n'ont que `onsiteContact` (souvent
+    // le nom), on le récupère dans le champ Nom.
+    onsiteContactName: String(r.onsiteContactName || r.onsiteContact || ""),
+    onsiteContactPhone: String(r.onsiteContactPhone || ""),
     freeComment: String(r.freeComment || ""),
   };
 }
@@ -157,14 +167,18 @@ export function P2cRequestForm({
     const user = getUser();
     if (!user || user.role !== "client") return;
     setAuthToken(getToken());
-    if (!isEdit && !frozen && !sentLocked && p2cSlot !== 2) {
+    // Préremplit les coordonnées du client (P1 ET P2 : même client).
+    // On n'écrase rien en édition, ni quand le formulaire est gelé/verrouillé.
+    if (!isEdit && !frozen && !sentLocked) {
       setForm((prev) => ({
         ...prev,
         company: prev.company || user.client?.companyName || "",
+        mainContact: prev.mainContact || user.client?.managerName || "",
         email: prev.email || user.email || "",
+        phone: prev.phone || user.client?.phone || "",
       }));
     }
-  }, [isEdit, frozen, sentLocked, p2cSlot]);
+  }, [isEdit, frozen, sentLocked]);
 
   useEffect(() => {
     if (!initialForm) return;
@@ -325,7 +339,7 @@ export function P2cRequestForm({
                     ? lockedFieldClass
                     : "box-border h-11 w-full min-w-0 rounded-lg border border-white/12 bg-black/45 px-3 text-[15px] text-white outline-none placeholder:text-neutral-600 focus:border-violet-400/40"
                 }
-                placeholder="Entreprise"
+                placeholder="Entreprise *"
                 value={form.company}
                 readOnly={lockInfo}
                 onChange={(e) => setForm((prev) => ({ ...prev, company: e.target.value }))}
@@ -337,7 +351,7 @@ export function P2cRequestForm({
                     ? lockedFieldClass
                     : "box-border h-11 w-full min-w-0 rounded-lg border border-white/12 bg-black/45 px-3 text-[15px] text-white outline-none placeholder:text-neutral-600 focus:border-violet-400/40"
                 }
-                placeholder="Contact principal"
+                placeholder="Contact principal *"
                 value={form.mainContact}
                 readOnly={lockInfo}
                 onChange={(e) => setForm((prev) => ({ ...prev, mainContact: e.target.value }))}
@@ -349,7 +363,7 @@ export function P2cRequestForm({
                     ? lockedFieldClass
                     : "box-border h-11 w-full min-w-0 rounded-lg border border-white/12 bg-black/45 px-3 text-[15px] text-white outline-none placeholder:text-neutral-600 focus:border-violet-400/40"
                 }
-                placeholder="Email"
+                placeholder="Email *"
                 type="email"
                 value={form.email}
                 readOnly={lockInfo}
@@ -362,7 +376,7 @@ export function P2cRequestForm({
                     ? lockedFieldClass
                     : "box-border h-11 w-full min-w-0 rounded-lg border border-white/12 bg-black/45 px-3 text-[15px] text-white outline-none placeholder:text-neutral-600 focus:border-violet-400/40"
                 }
-                placeholder="Telephone"
+                placeholder="Téléphone *"
                 value={form.phone}
                 readOnly={lockInfo}
                 onChange={(e) => setForm((prev) => ({ ...prev, phone: e.target.value }))}
@@ -382,7 +396,7 @@ export function P2cRequestForm({
             onChange={(e) => setForm((prev) => ({ ...prev, communicationAxis: e.target.value }))}
           >
             <option value="" disabled>
-              Axe de communication
+              Axe de communication *
             </option>
             {COMMUNICATION_AXES.map((axis) => (
               <option key={axis.id} value={axis.id}>
@@ -396,7 +410,7 @@ export function P2cRequestForm({
                 ? lockedFieldClass + " min-h-[82px] py-2"
                 : "box-border min-h-[82px] w-full min-w-0 rounded-lg border border-white/12 bg-black/45 px-3 py-2 text-[15px] text-white outline-none placeholder:text-neutral-600 focus:border-violet-400/40 md:col-span-2"
             }
-            placeholder="Projet / demande"
+            placeholder="Projet / demande *"
             value={form.projectDetails}
             readOnly={lockInfo}
             onChange={(e) => setForm((prev) => ({ ...prev, projectDetails: e.target.value }))}
@@ -561,7 +575,7 @@ export function P2cRequestForm({
                 ? lockedFieldClass + " min-h-[72px] py-2"
                 : "box-border min-h-[72px] w-full min-w-0 rounded-lg border border-white/12 bg-black/45 px-3 py-2 text-[15px] text-white outline-none placeholder:text-neutral-600 focus:border-violet-400/40 md:col-span-2"
             }
-            placeholder="Contraintes techniques"
+            placeholder="Contraintes techniques *"
             value={form.technicalConstraints}
             readOnly={lockInfo}
             onChange={(e) => setForm((prev) => ({ ...prev, technicalConstraints: e.target.value }))}
@@ -573,10 +587,23 @@ export function P2cRequestForm({
                 ? lockedFieldClass
                 : "box-border h-11 w-full min-w-0 rounded-lg border border-white/12 bg-black/45 px-3 text-[15px] text-white outline-none placeholder:text-neutral-600 focus:border-violet-400/40"
             }
-            placeholder="Contact sur place"
-            value={form.onsiteContact}
+            placeholder="Nom du contact sur place *"
+            value={form.onsiteContactName}
             readOnly={lockInfo}
-            onChange={(e) => setForm((prev) => ({ ...prev, onsiteContact: e.target.value }))}
+            onChange={(e) => setForm((prev) => ({ ...prev, onsiteContactName: e.target.value }))}
+            required
+          />
+          <input
+            className={
+              lockInfo
+                ? lockedFieldClass
+                : "box-border h-11 w-full min-w-0 rounded-lg border border-white/12 bg-black/45 px-3 text-[15px] text-white outline-none placeholder:text-neutral-600 focus:border-violet-400/40"
+            }
+            placeholder="N° du contact sur place *"
+            type="tel"
+            value={form.onsiteContactPhone}
+            readOnly={lockInfo}
+            onChange={(e) => setForm((prev) => ({ ...prev, onsiteContactPhone: e.target.value }))}
             required
           />
           <textarea

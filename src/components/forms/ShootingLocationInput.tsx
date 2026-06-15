@@ -89,11 +89,12 @@ export function ShootingLocationInput({
       />
       <div>
         <label className="mb-1 block text-[11px] font-bold uppercase tracking-wide text-neutral-400">
-          Rue / complément (optionnel)
+          Rue et numéro {required ? <span className="text-violet-300">*</span> : "(optionnel)"}
         </label>
         <input
           type="text"
           value={streetLine}
+          required={required}
           placeholder="Ex. 12 rue de la République"
           className={editableInputClass || streetClass}
           onChange={(e) => onStreetChange(e.target.value)}
@@ -107,4 +108,10 @@ export function ShootingLocationInput({
 export function isShootingCityValid(value: string): boolean {
   const p = parseShootingAddress(value);
   return /^\d{5}$/.test(p.postalCode) && p.cityName.length > 0;
+}
+
+/** Adresse de tournage complète : rue + ville (CP) — la rue est obligatoire. */
+export function isShootingAddressComplete(value: string): boolean {
+  const p = parseShootingAddress(value);
+  return isShootingCityValid(value) && p.streetLine.trim().length > 0;
 }

@@ -3,17 +3,17 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { Calendar, Clock, Pencil, Radio } from "lucide-react";
+import { Calendar, Clock, Pencil, Radio, Trash2 } from "lucide-react";
 import { apiFetch } from "@/lib/api";
 import { getToken, getUser } from "@/lib/auth";
 import { useRouter } from "next/navigation";
 import {
   MemberDemandesHero,
   MemberEmptyStateVisual,
-  MemberRequestCardVisual,
 } from "@/components/member/MemberBrandImagery";
 import { MemberY2KLayout } from "@/components/member/MemberY2KLayout";
 import { ChromeCard } from "@/components/admin/Y2KAdminLayout";
+import { ConfirmDialog } from "@/components/ConfirmDialog";
 import {
   StatusBadge,
   axisLabelFr,
@@ -34,6 +34,23 @@ export default function MembreDemandesPage() {
   const router = useRouter();
   const [items, setItems] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [cancellingId, setCancellingId] = useState<string | null>(null);
+  const [confirmId, setConfirmId] = useState<string | null>(null);
+
+  async function performCancel() {
+    const id = confirmId;
+    if (!id) return;
+    setCancellingId(id);
+    try {
+      await apiFetch(`/requests/${id}`, { method: "DELETE" }, getToken());
+      setItems((prev) => prev.filter((it) => it._id !== id));
+      setConfirmId(null);
+    } catch {
+      window.alert("Impossible d'annuler la demande. Réessayez.");
+    } finally {
+      setCancellingId(null);
+    }
+  }
 
   useEffect(() => {
     const user = getUser();
@@ -86,11 +103,10 @@ export default function MembreDemandesPage() {
           </div>
         ) : (
           <ul className="space-y-5">
-            {items.map((r, i) => (
+            {items.map((r) => (
               <li key={r._id}>
                 <ChromeCard className="min-w-0 overflow-hidden border-white/10">
                   <div className="flex min-w-0 flex-col gap-4 sm:flex-row sm:gap-5">
-                    <MemberRequestCardVisual index={i} />
                     <div className="flex min-w-0 flex-1 flex-col gap-3 sm:gap-4">
                     <div className="flex min-w-0 flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-start sm:justify-between">
                       <div className="min-w-0 flex-1">
@@ -140,13 +156,24 @@ export default function MembreDemandesPage() {
                       </div>
                     </div>
                     {EDITABLE_STATUSES.has(r.status) ? (
-                      <Link
-                        href={`/membre/demandes/${r._id}/modifier`}
-                        className="inline-flex w-full items-center justify-center gap-2 rounded-lg border border-violet-400/35 bg-violet-500/15 px-4 py-2.5 text-xs font-bold uppercase tracking-wide text-violet-100 transition-colors hover:bg-violet-500/25 sm:text-sm"
-                      >
-                        <Pencil className="h-4 w-4 shrink-0" strokeWidth={1.75} />
-                        Modifier la demande
-                      </Link>
+                      <div className="flex flex-col gap-2">
+                        <Link
+                          href={`/membre/demandes/${r._id}/modifier`}
+                          className="inline-flex w-full items-center justify-center gap-2 rounded-lg border border-violet-400/35 bg-violet-500/15 px-4 py-2.5 text-xs font-bold uppercase tracking-wide text-violet-100 transition-colors hover:bg-violet-500/25 sm:text-sm"
+                        >
+                          <Pencil className="h-4 w-4 shrink-0" strokeWidth={1.75} />
+                          Modifier la demande
+                        </Link>
+                        <button
+                          type="button"
+                          onClick={() => setConfirmId(r._id)}
+                          disabled={cancellingId === r._id}
+                          className="inline-flex w-full items-center justify-center gap-2 rounded-lg border border-red-400/35 bg-red-500/10 px-4 py-2.5 text-xs font-bold uppercase tracking-wide text-red-100 transition-colors hover:bg-red-500/20 disabled:cursor-not-allowed disabled:opacity-50 sm:text-sm"
+                        >
+                          <Trash2 className="h-4 w-4 shrink-0" strokeWidth={1.75} />
+                          {cancellingId === r._id ? "Annulation…" : "Annuler ma demande"}
+                        </button>
+                      </div>
                     ) : null}
                     </div>
                   </div>
@@ -156,6 +183,18 @@ export default function MembreDemandesPage() {
           </ul>
         )}
       </div>
+
+      <ConfirmDialog
+        open={confirmId !== null}
+        danger
+        title="Annuler cette demande ?"
+        message="Cette action est irréversible. Votre demande sera définitivement supprimée et votre créneau libéré. Vous pourrez ensuite en créer une nouvelle."
+        confirmLabel="Annuler ma demande"
+        cancelLabel="Conserver"
+        loading={cancellingId !== null}
+        onConfirm={performCancel}
+        onCancel={() => setConfirmId(null)}
+      />
     </MemberY2KLayout>
   );
 }

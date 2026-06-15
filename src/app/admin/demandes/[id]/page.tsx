@@ -186,7 +186,8 @@ export default function DemandeDetailPage() {
               <DetailSection icon={MapPin} title="Lieu & logistique" className="lg:col-span-2">
                 <InfoRow label="Adresse tournage" value={display(item.shootingAddress)} />
                 <InfoRow label="Contraintes techniques" value={display(item.technicalConstraints)} />
-                <InfoRow label="Contact sur place" value={display(item.onsiteContact)} />
+                <InfoRow label="Nom contact sur place" value={display(item.onsiteContactName || item.onsiteContact)} />
+                <InfoRow label="Tél. contact sur place" value={display(item.onsiteContactPhone)} mono />
                 <InfoRow label="Commentaire libre" value={display(item.freeComment)} />
               </DetailSection>
             </div>
