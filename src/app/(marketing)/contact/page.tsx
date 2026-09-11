@@ -128,28 +128,32 @@ export default function ContactPage() {
           </div>
 
           {/* Progress Bar */}
-          <div className="mb-8">
-            <div className="flex items-center justify-between mb-4">
+          <div className="mb-8 flex justify-center w-full">
+            <div className="flex items-center justify-center w-full max-w-[280px] xs:max-w-xs sm:max-w-md mx-auto">
               {[...Array(totalSteps)].map((_, i) => (
-                <div key={i} className="flex items-center flex-1">
-                  <div className="flex items-center justify-center w-10 h-10 rounded-full border-2 transition-all duration-300"
-                       style={{
-                         borderColor: currentStep > i + 1 ? '#22d3ee' : currentStep === i + 1 ? '#22d3ee' : '#374151',
-                         backgroundColor: currentStep > i + 1 ? '#22d3ee' : currentStep === i + 1 ? '#22d3ee' : 'transparent',
-                       }}>
+                <div key={i} className={`flex items-center ${i < totalSteps - 1 ? 'flex-1' : 'shrink-0'}`}>
+                  <div
+                    className="flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-full border-2 transition-all duration-300 shrink-0"
+                    style={{
+                      borderColor: currentStep >= i + 1 ? '#22d3ee' : '#374151',
+                      backgroundColor: currentStep >= i + 1 ? '#22d3ee' : 'transparent',
+                    }}
+                  >
                     {currentStep > i + 1 ? (
-                      <Check className="w-5 h-5 text-black" />
+                      <Check className="w-4 h-4 sm:w-5 sm:h-5 text-black" />
                     ) : (
-                      <span className="text-sm font-semibold" style={{ color: currentStep === i + 1 ? '#000' : '#9ca3af' }}>
+                      <span className="text-xs sm:text-sm font-semibold" style={{ color: currentStep === i + 1 ? '#000' : '#9ca3af' }}>
                         {i + 1}
                       </span>
                     )}
                   </div>
                   {i < totalSteps - 1 && (
-                    <div className="flex-1 h-0.5 mx-2 transition-all duration-300"
-                         style={{
-                           backgroundColor: currentStep > i + 1 ? '#22d3ee' : '#374151',
-                         }} />
+                    <div
+                      className="flex-1 h-0.5 mx-2 sm:mx-3 transition-all duration-300 rounded-full"
+                      style={{
+                        backgroundColor: currentStep > i + 1 ? '#22d3ee' : '#374151',
+                      }}
+                    />
                   )}
                 </div>
               ))}

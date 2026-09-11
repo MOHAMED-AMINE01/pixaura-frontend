@@ -12,9 +12,9 @@ import { getAssetUrl } from "@/lib/cloudinary"
 const heroProjects = [
   {
     id: 1,
-    client: "Touraine Cars",
-    title: "Night Drive Experience",
-    category: "Film • Activation",
+    client: "LÉPINE CONCEPTEUR",
+    title: "L'élégance du sur mesure",
+    category: "Film • Brand Content",
     image: getAssetUrl("/Banque d_images/Copie de M7_03225.jpg", "image"),
   },
   {
@@ -44,14 +44,14 @@ const getNodeText = (node: ReactNode): string => {
 
 interface VideoCardHolographicProps {
   videoRef: React.RefObject<HTMLVideoElement | null>
-  videoSrc: string
+  videoSrc?: string
   isMuted: boolean
   toggleMute: () => void
 }
 
 const VideoCardHolographic: React.FC<VideoCardHolographicProps> = ({
   videoRef,
-  videoSrc,
+  videoSrc = "/WEB.mp4",
   isMuted,
   toggleMute,
 }) => {
@@ -94,7 +94,7 @@ const VideoCardHolographic: React.FC<VideoCardHolographicProps> = ({
         dragElastic={dragElastic}
         dragConstraints={{ top: 0, left: 0, right: 0, bottom: 0 }}
         whileTap={{ cursor: "grabbing" }}
-        className="group relative isolate flex h-[480px] w-full flex-col overflow-hidden rounded-[30px] border cursor-grab shadow-2xl xl:h-[520px]"
+        className="group relative isolate flex aspect-video w-full flex-col overflow-hidden rounded-[30px] border cursor-grab shadow-2xl"
       >
         <div
           className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
@@ -193,8 +193,8 @@ const VideoCardHolographic: React.FC<VideoCardHolographicProps> = ({
         <div className="absolute left-1/2 top-0 -translate-x-1/2 h-[2px] w-24 bg-gradient-to-r from-transparent via-cyan-400/40 to-transparent pointer-events-none z-20" />
         <div className="absolute left-1/2 bottom-0 -translate-x-1/2 h-[2px] w-24 bg-gradient-to-r from-transparent via-purple-500/40 to-transparent pointer-events-none z-20" />
 
-        {/* Video container - full width, no padding */}
-        <div className="relative h-full w-full overflow-hidden rounded-[26px] m-[4px] z-10">
+        {/* Video container - landscape aspect ratio */}
+        <div className="relative aspect-video w-full overflow-hidden rounded-[26px] z-10">
           <video
             ref={videoRef}
             src={videoSrc}
@@ -310,13 +310,12 @@ export function HeroSection() {
                 </>
               )
             } else {
-              // French (forced lines): "des idées" / "audacieuses" / "qui" / "font rayonner" / "chaque marque."
+              // French (forced lines): "des idées" / "audacieuses" / "qui font" / "rayonner" / "chaque marque."
               const line1Words = t("hero.headline2Line1").split(" ")
               const line2Words = t("hero.headline2Line2").split(" ")
               const line1 = line1Words.slice(0, 2).join(" ")
               const line2 = line1Words[2] ?? ""
-              const line3 = line1Words[3] ?? "" // "qui"
-              const line4Prefix = line2Words[0] ?? "" // "font"
+              const line3 = `${line1Words[3] ?? ""}\u00A0${line2Words[0] ?? ""}`.trim() // "qui font"
               const line4Highlight = line2Words[1] ?? "" // "rayonner"
               // Use non‑breaking spaces so the browser doesn't split the 3rd and 4th lines into extra lines
               const line4 = `${line2Words[2] ?? ""}\u00A0${t("hero.headline2Line3")}`.trim() // "chaque marque."
@@ -327,8 +326,6 @@ export function HeroSection() {
                   <span className="block leading-tight -mt-1 sm:mt-0">{line2}</span>
                   <span className="block leading-tight -mt-1 sm:mt-0">{line3}</span>
                   <span className="block leading-tight -mt-1 sm:mt-0 whitespace-normal md:whitespace-nowrap">
-                    {line4Prefix}
-                    {"\u00A0"}
                     <span className="hero-highlight">{line4Highlight}</span>
                   </span>
                   <span className="block leading-tight -mt-1 sm:mt-0 whitespace-normal md:whitespace-nowrap mb-0">
@@ -458,9 +455,9 @@ export function HeroSection() {
   return (
     <section className="relative flex min-h-screen w-full items-center justify-center overflow-hidden">
 
-      <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-col gap-12 px-4 pt-32 pb-20 sm:px-6 sm:pt-36 sm:pb-24 md:px-12 lg:gap-16 lg:pb-8 xl:max-w-7xl xl:pb-6">
-        <div className="grid gap-14 text-white lg:grid-cols-[minmax(0,1.05fr)_minmax(280px,0.95fr)] lg:gap-10 xl:gap-14">
-          <div className="flex flex-col gap-12 relative z-10">
+      <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-col gap-6 sm:gap-10 md:gap-12 px-4 pt-20 pb-6 sm:px-6 sm:pt-36 sm:pb-24 md:px-12 lg:gap-16 lg:pb-8 xl:max-w-7xl xl:pb-6">
+        <div className="grid gap-8 sm:gap-12 md:gap-14 text-white lg:grid-cols-[minmax(0,1.05fr)_minmax(280px,0.95fr)] lg:gap-10 xl:gap-14">
+          <div className="flex flex-col gap-6 sm:gap-10 md:gap-12 relative z-10">
             <div>
               <Reveal delay={100}>
                 <div className="relative max-w-4xl z-20">
@@ -503,7 +500,7 @@ export function HeroSection() {
             </div>
 
             <Reveal delay={360}>
-              <div className="flex flex-col gap-6 lg:gap-8">
+              <div className="flex flex-col gap-4 sm:gap-6 lg:gap-8">
                 <div className="flex flex-col gap-4 justify-center sm:justify-start sm:flex-row sm:items-center sm:gap-4">
                   <Link
                     href="/#contact"
@@ -523,11 +520,11 @@ export function HeroSection() {
                     <div className="pointer-events-none absolute -inset-6 rounded-[36px] bg-gradient-to-r from-cyan-400/20 via-purple-500/20 to-cyan-400/20 blur-3xl opacity-0 transition-opacity duration-700 group-hover:opacity-100" />
                     <div className="pointer-events-none absolute -inset-3 rounded-[32px] bg-gradient-to-br from-white/10 via-cyan-500/10 to-purple-500/10 blur-2xl opacity-0 transition-opacity duration-700 group-hover:opacity-100" />
                     
-                    {/* Video container - full width, no padding */}
-                    <div className="relative h-[320px] w-full overflow-hidden sm:h-[380px]">
+                    {/* Video container - landscape aspect ratio */}
+                    <div className="relative aspect-video w-full overflow-hidden">
                       <video
                         ref={videoRef}
-                        src={getAssetUrl("/Banque d_images/halowen.mp4", "video")}
+                        src="/WEB.mp4"
                         autoPlay
                         loop
                         muted={isMuted}
@@ -541,6 +538,9 @@ export function HeroSection() {
                       
                       {/* Subtle gradient overlay - minimal */}
                       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/0 via-black/5 to-black/20" />
+                      
+                      {/* Tech Scan Line Effect */}
+                      <div className="pointer-events-none absolute inset-0 opacity-[0.03] bg-[linear-gradient(transparent_50%,rgba(34,211,238,0.03)_50%)] bg-[length:100%_4px]" />
                       
                       {/* Mute/Unmute button */}
                       <button
@@ -567,10 +567,10 @@ export function HeroSection() {
 
           <div className="relative hidden w-full items-start justify-end lg:flex lg:mt-32 xl:mt-40">
             <div className="flex w-full max-w-[85%] justify-end">
-              <Reveal delay={180}>
+              <Reveal delay={180} className="w-full">
                 <VideoCardHolographic 
                   videoRef={videoRef}
-                  videoSrc={getAssetUrl("/Banque d_images/halowen.mp4", "video")}
+                  videoSrc="/WEB.mp4"
                   isMuted={isMuted}
                   toggleMute={toggleMute}
                 />

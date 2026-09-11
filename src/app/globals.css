@@ -194,9 +194,16 @@
   animation: glow 2s ease-in-out;
 }
 
-/* Smooth scroll behavior */
+/* Smooth scroll behavior & prevent mobile elastic overscroll */
 html {
   scroll-behavior: smooth;
+  overscroll-behavior: none;
+  overscroll-behavior-y: none;
+}
+
+body {
+  overscroll-behavior: none;
+  overscroll-behavior-y: none;
 }
 
 /* Gradient text utilities */
@@ -1450,7 +1457,7 @@ select:focus option:checked {
   border-radius: 18px;
   overflow: hidden;
   box-shadow: inset 0 0 45px rgba(5, 9, 20, 0.6);
-  background: rgba(5, 8, 18, 0.95);
+  background: #000000;
 }
 
 .latest-preview-media video {
@@ -1458,7 +1465,7 @@ select:focus option:checked {
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   object-position: center;
   will-change: auto;
   transform: translateZ(0);

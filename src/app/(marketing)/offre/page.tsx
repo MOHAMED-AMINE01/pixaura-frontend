@@ -5,8 +5,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
-import { Factory, Sparkles, BarChart3, Check, Calendar, FileText, ChevronDown, X } from "lucide-react"
-import * as Dialog from "@radix-ui/react-dialog"
+import { Factory, Sparkles, BarChart3, Check, Calendar, ChevronDown } from "lucide-react"
 import { getAssetUrl } from "@/lib/cloudinary"
 
 // Structure de données pour les fiches détaillées
@@ -342,12 +341,12 @@ export default function OffrePage() {
                       </p>
                       <ul className="space-y-3 mb-5 text-left">
                         {differentiatorDetails.production.points.map((point, index) => (
-                          <li key={index} className="text-gray-200 text-base leading-relaxed flex items-start font-medium" style={{ 
+                          <li key={index} className="text-gray-200 text-base leading-relaxed flex items-start font-medium text-left" style={{ 
                             fontFamily: 'Montserrat, sans-serif',
                             lineHeight: '1.6',
                           }}>
-                            <span className="text-white/80 mr-3 mt-1.5 text-lg font-bold">•</span>
-                            <span>{point}</span>
+                            <span className="text-white/80 mr-3 mt-1.5 text-lg font-bold shrink-0 select-none">•</span>
+                            <span className="flex-1 text-left">{point}</span>
                           </li>
                         ))}
                       </ul>
@@ -522,12 +521,12 @@ export default function OffrePage() {
                       </p>
                       <ul className="space-y-3 mb-5 text-left">
                         {differentiatorDetails.creativite.points.map((point, index) => (
-                          <li key={index} className="text-gray-200 text-base leading-relaxed flex items-start font-medium" style={{ 
+                          <li key={index} className="text-gray-200 text-base leading-relaxed flex items-start font-medium text-left" style={{ 
                             fontFamily: 'Montserrat, sans-serif',
                             lineHeight: '1.6',
                           }}>
-                            <span className="text-white/80 mr-3 mt-1.5 text-lg font-bold">•</span>
-                            <span>{point}</span>
+                            <span className="text-white/80 mr-3 mt-1.5 text-lg font-bold shrink-0 select-none">•</span>
+                            <span className="flex-1 text-left">{point}</span>
                           </li>
                         ))}
                       </ul>
@@ -711,12 +710,12 @@ export default function OffrePage() {
                       </p>
                       <ul className="space-y-3 mb-5 text-left">
                         {differentiatorDetails.suivi.points.map((point, index) => (
-                          <li key={index} className="text-gray-200 text-base leading-relaxed flex items-start font-medium" style={{
+                          <li key={index} className="text-gray-200 text-base leading-relaxed flex items-start font-medium text-left" style={{ 
                             fontFamily: 'Montserrat, sans-serif',
                             lineHeight: '1.6',
                           }}>
-                            <span className="text-white/80 mr-3 mt-1.5 text-lg font-bold">•</span>
-                            <span>{point}</span>
+                            <span className="text-white/80 mr-3 mt-1.5 text-lg font-bold shrink-0 select-none">•</span>
+                            <span className="flex-1 text-left">{point}</span>
                           </li>
                         ))}
                       </ul>
@@ -1488,191 +1487,7 @@ export default function OffrePage() {
           </div>
         </section>
 
-        {/* Section Separator - Enhanced */}
-        <div className="relative py-12 px-6">
-          <div className="max-w-7xl mx-auto">
-            <div className="h-[2px] bg-gradient-to-r from-transparent via-white/40 to-transparent rounded-full">
-              <div className="absolute left-1/2 -translate-x-1/2 w-32 h-[2px] bg-gradient-to-r from-cyan-400/60 to-purple-500/60 blur-sm opacity-60" />
-            </div>
-          </div>
-        </div>
 
-        {/* Section "Tarifs & Modalités" - Ultra Premium Royal */}
-        <section className="relative py-24 px-6">
-          <div className="max-w-5xl mx-auto">
-            <div className="relative group/pricing">
-              {/* Multi-Layer Glow Effects - Ultra Premium */}
-              <div className="absolute -inset-6 bg-gradient-to-r from-cyan-400/30 via-purple-500/30 to-cyan-400/30 rounded-3xl blur-4xl opacity-40 group-hover/pricing:opacity-70 transition-opacity duration-1000" style={{ animation: 'pack-glow-pulse 4s ease-in-out infinite' }} />
-              <div className="absolute -inset-4 bg-gradient-to-r from-white/15 via-white/20 to-white/15 rounded-3xl blur-3xl opacity-30 group-hover/pricing:opacity-50 transition-opacity duration-1000" />
-              <div className="absolute -inset-2 bg-gradient-to-r from-white/10 via-white/15 to-white/10 rounded-2xl blur-2xl opacity-20 group-hover/pricing:opacity-40 transition-opacity duration-1000" />
-              
-              {/* Light Sweep Effect */}
-              <div className="absolute inset-0 rounded-3xl opacity-0 group-hover/pricing:opacity-100 transition-opacity duration-700 overflow-hidden pointer-events-none">
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent" style={{ 
-                  animation: 'light-sweep-premium 3s ease-in-out infinite',
-                }} />
-              </div>
-              
-              {/* Main Card Container - Ultra Premium Royal */}
-              <div className="relative bg-black/90 backdrop-blur-3xl rounded-3xl border-2 border-white/25 p-10 md:p-16 shadow-2xl shadow-black/70 group-hover/pricing:border-white/40 group-hover/pricing:shadow-cyan-400/20 group-hover/pricing:shadow-purple-500/20 transition-all duration-700 overflow-hidden">
-                {/* Animated Background Gradient */}
-                <div className="absolute inset-0 bg-gradient-to-br from-cyan-400/8 via-purple-500/8 to-cyan-400/5 opacity-0 group-hover/pricing:opacity-100 transition-opacity duration-700" style={{
-                  backgroundSize: '200% 200%',
-                  animation: 'gradientShiftAdvanced 6s ease infinite',
-                }} />
-                
-                {/* Floating Particles */}
-                {mounted && [...Array(8)].map((_, i) => (
-                  <div
-                    key={i}
-                    className={`absolute w-2 h-2 rounded-full opacity-0 group-hover/pricing:opacity-50 ${i % 3 === 0 ? 'bg-cyan-400' : i % 3 === 1 ? 'bg-purple-400' : 'bg-white'}`}
-                    style={{
-                      left: `${20 + i * 10}%`,
-                      top: `${25 + i * 8}%`,
-                      animation: `particle-float-premium ${2.5 + i * 0.3}s ease-in-out infinite`,
-                      animationDelay: `${i * 0.3}s`,
-                      filter: 'blur(1px)',
-                    }}
-                  />
-                ))}
-                
-                {/* Corner Glow Effects */}
-                <div className="absolute top-0 left-0 w-40 h-40 bg-gradient-to-br from-cyan-400/20 to-transparent rounded-tl-3xl opacity-0 group-hover/pricing:opacity-100 transition-opacity duration-700 blur-2xl" />
-                <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-bl from-purple-500/20 to-transparent rounded-tr-3xl opacity-0 group-hover/pricing:opacity-100 transition-opacity duration-700 blur-2xl" />
-                <div className="absolute bottom-0 left-0 w-40 h-40 bg-gradient-to-tr from-cyan-400/20 to-transparent rounded-bl-3xl opacity-0 group-hover/pricing:opacity-100 transition-opacity duration-700 blur-2xl" />
-                <div className="absolute bottom-0 right-0 w-40 h-40 bg-gradient-to-tl from-purple-500/20 to-transparent rounded-br-3xl opacity-0 group-hover/pricing:opacity-100 transition-opacity duration-700 blur-2xl" />
-                
-                <div className="relative z-10">
-                  {/* Title - Ultra Premium */}
-                  <div className="relative mb-10">
-                    <div className="absolute -inset-4 bg-gradient-to-r from-cyan-400/20 via-purple-500/20 to-cyan-400/20 rounded-2xl blur-2xl opacity-50 group-hover/pricing:opacity-80 transition-opacity duration-700" />
-                    <h2 className="text-5xl md:text-6xl lg:text-7xl font-black text-white relative z-10 mb-4 group-hover/pricing:text-transparent group-hover/pricing:bg-clip-text group-hover/pricing:bg-gradient-to-r group-hover/pricing:from-cyan-400 group-hover/pricing:via-purple-500 group-hover/pricing:to-cyan-400 transition-all duration-700" style={{ 
-                      fontFamily: 'Montserrat, sans-serif', 
-                      letterSpacing: '-0.03em',
-                      lineHeight: '1.1',
-                      textShadow: '0 0 40px rgba(255, 255, 255, 0.2), 0 0 80px rgba(255, 255, 255, 0.1)',
-                    }}>
-                      Tarifs & Modalités
-                    </h2>
-                    {/* Professional Underline */}
-                    <div className="absolute -bottom-2 left-0 w-40 h-1 bg-gradient-to-r from-cyan-400 via-purple-500 to-cyan-400 rounded-full opacity-60 group-hover/pricing:opacity-100 group-hover/pricing:w-56 transition-all duration-700" style={{ animation: 'pack-glow-pulse 3s ease-in-out infinite' }} />
-                  </div>
-                  
-                  {/* Content Paragraphs - Premium Typography */}
-                  <div className="space-y-5 mb-10">
-                    <p className="text-gray-200 text-lg md:text-xl leading-relaxed group-hover/pricing:text-white transition-colors duration-500" style={{ fontFamily: 'Montserrat, sans-serif' }}>
-                      Notre stratégie marketing globale accompagne chaque marque sur 12 mois complets.
-                    </p>
-                    <p className="text-gray-300 text-base md:text-lg leading-relaxed group-hover/pricing:text-gray-100 transition-colors duration-500" style={{ fontFamily: 'Montserrat, sans-serif' }}>
-                      Nous assurons la production de contenus réguliers, la gestion stratégique des réseaux, et un accompagnement créatif sur mesure.
-                    </p>
-                    <p className="text-gray-300 text-base md:text-lg leading-relaxed group-hover/pricing:text-gray-100 transition-colors duration-500" style={{ fontFamily: 'Montserrat, sans-serif' }}>
-                      Toutes nos prestations sont encadrées par un contrat clair et un droit à l'image professionnel.
-                    </p>
-                  </div>
-                  
-                  {/* Starter Pack Highlight - Premium */}
-                  <div className="relative mb-10 group/highlight">
-                    <div className="absolute -inset-3 bg-gradient-to-br from-cyan-400/30 via-purple-500/30 to-cyan-400/30 rounded-2xl blur-2xl opacity-40 group-hover/highlight:opacity-70 transition-opacity duration-700" style={{ animation: 'pack-glow-pulse 3s ease-in-out infinite' }} />
-                    <div className="relative bg-gradient-to-br from-white/15 via-white/10 to-white/5 rounded-2xl border-2 border-white/30 p-6 md:p-8 shadow-xl shadow-black/50 group-hover/highlight:border-cyan-400/50 group-hover/highlight:shadow-cyan-400/20 transition-all duration-500">
-                      <p className="text-white font-bold text-base md:text-lg leading-relaxed" style={{ fontFamily: 'Montserrat, sans-serif' }}>
-                        <span className="text-cyan-400">Starter :</span> 1 499 € TTC le 1er mois, puis 11 × 375 €. Engagement 12 mois, préavis 3 mois.
-                      </p>
-                    </div>
-                  </div>
-                  
-                  {/* Premium Button for Modal */}
-                  <Dialog.Root>
-                    <Dialog.Trigger asChild>
-                      <button className="group relative w-full px-8 py-5 bg-gradient-to-r from-cyan-400 via-purple-500 to-cyan-400 text-white font-bold rounded-2xl hover:scale-105 transition-all duration-500 shadow-2xl shadow-cyan-400/30 hover:shadow-cyan-400/50 overflow-hidden" style={{ fontFamily: 'Montserrat, sans-serif' }}>
-                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
-                        <span className="relative z-10 flex items-center justify-center gap-3">
-                          <FileText className="w-5 h-5" />
-                          Voir les conditions détaillées
-                        </span>
-                      </button>
-                    </Dialog.Trigger>
-                    
-                    {/* Premium Modal/Lightbox */}
-                    <Dialog.Portal>
-                      <Dialog.Overlay className="fixed inset-0 bg-black/80 backdrop-blur-md z-50 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0" />
-                      <Dialog.Content className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] max-w-4xl max-h-[85vh] bg-black/95 backdrop-blur-3xl rounded-3xl border-2 border-white/30 p-8 md:p-12 shadow-2xl shadow-black/80 z-50 overflow-y-auto data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95">
-                        {/* Modal Glow Effects */}
-                        <div className="absolute -inset-4 bg-gradient-to-r from-cyan-400/30 via-purple-500/30 to-cyan-400/30 rounded-3xl blur-4xl opacity-50" style={{ animation: 'pack-glow-pulse 4s ease-in-out infinite' }} />
-                        <div className="absolute -inset-2 bg-gradient-to-r from-white/15 via-white/20 to-white/15 rounded-2xl blur-2xl opacity-30" />
-                        
-                        {/* Animated Background Gradient */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-cyan-400/8 via-purple-500/8 to-cyan-400/5 rounded-3xl" style={{
-                          backgroundSize: '200% 200%',
-                          animation: 'gradientShiftAdvanced 6s ease infinite',
-                        }} />
-                        
-                        <div className="relative z-10">
-                          {/* Modal Header */}
-                          <div className="flex items-center justify-between mb-8">
-                            <div className="relative">
-                              <Dialog.Title className="text-4xl md:text-5xl font-black text-white relative z-10" style={{ 
-                                fontFamily: 'Montserrat, sans-serif', 
-                                letterSpacing: '-0.03em',
-                                textShadow: '0 0 40px rgba(255, 255, 255, 0.2), 0 0 80px rgba(255, 255, 255, 0.1)',
-                              }}>
-                                Conditions Détaillées
-                              </Dialog.Title>
-                              <div className="absolute -bottom-2 left-0 w-32 h-1 bg-gradient-to-r from-cyan-400 via-purple-500 to-cyan-400 rounded-full opacity-60" style={{ animation: 'pack-glow-pulse 3s ease-in-out infinite' }} />
-                            </div>
-                            <Dialog.Close asChild>
-                              <button className="w-10 h-10 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 hover:border-cyan-400/50 flex items-center justify-center transition-all duration-300 hover:scale-110 group/close">
-                                <X className="w-5 h-5 text-white group-hover/close:text-cyan-400 transition-colors duration-300" />
-                              </button>
-                            </Dialog.Close>
-                          </div>
-                          
-                          {/* Modal Content */}
-                          <div className="space-y-6">
-                            {[
-                              {
-                                title: "Engagement et Durée",
-                                content: "Tous nos packs sont proposés sur une base d'engagement de 12 mois complets, permettant un accompagnement stratégique approfondi et des résultats mesurables."
-                              },
-                              {
-                                title: "Modalités de Paiement",
-                                content: "Pour le Pack Starter : paiement initial de 1 499 € TTC au démarrage, suivi de 11 mensualités de 375 € TTC. Les autres packs font l'objet d'un devis personnalisé avec modalités adaptées."
-                              },
-                              {
-                                title: "Préavis et Résiliation",
-                                content: "Un préavis de 3 mois est requis pour toute résiliation anticipée. Cette période permet d'assurer une transition en douceur et de finaliser les projets en cours."
-                              },
-                              {
-                                title: "Droit à l'Image",
-                                content: "Toutes nos prestations incluent un droit à l'image professionnel, garantissant l'utilisation légale et éthique de tous les contenus produits dans le cadre de nos services."
-                              },
-                              {
-                                title: "Contrat et Garanties",
-                                content: "Chaque prestation est encadrée par un contrat clair et détaillé, définissant précisément les livrables, les délais, et les responsabilités de chaque partie. Nous garantissons la qualité professionnelle de tous nos services."
-                              }
-                            ].map((item, index) => (
-                              <div key={index} className="relative group/item">
-                                <div className="absolute -inset-2 bg-gradient-to-r from-cyan-400/10 via-purple-500/10 to-cyan-400/10 rounded-xl opacity-0 group-hover/item:opacity-100 transition-opacity duration-500" />
-                                <div className="relative bg-white/5 rounded-xl border border-white/10 p-6 group-hover/item:border-cyan-400/30 group-hover/item:bg-white/8 transition-all duration-500">
-                                  <h3 className="text-white font-bold text-xl mb-3 group-hover/item:text-cyan-400 transition-colors duration-500" style={{ fontFamily: 'Montserrat, sans-serif' }}>
-                                    {item.title}
-                                  </h3>
-                                  <p className="text-gray-300 text-base leading-relaxed group-hover/item:text-gray-100 transition-colors duration-500" style={{ fontFamily: 'Montserrat, sans-serif' }}>
-                                    {item.content}
-                                  </p>
-                                </div>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      </Dialog.Content>
-                    </Dialog.Portal>
-                  </Dialog.Root>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
 
         {/* Section Separator - Enhanced */}
         <div className="relative py-12 px-6">

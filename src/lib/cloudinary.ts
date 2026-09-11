@@ -205,6 +205,17 @@ const LOCAL_ONLY_PATHS: ReadonlySet<string> = new Set([
   '/Banque d_images/Copie de DSC04796.jpg',
   '/Banque d_images/art2.jpg',
   '/Banque d_images/Copie de M7_00487.jpg',
+  '/assets/valorisation-marque.jpg',
+  '/assets/service-publicitaire.jpg',
+  '/assets/production-integree.jpg',
+  '/assets/formation-continue.jpg',
+  '/assets/aurelien-lepine.mp4',
+  '/assets/performance-automobile.mp4',
+  '/assets/projet-artistique.jpg',
+  '/assets/creativite-strategique.jpg',
+  '/assets/suivi-mesurable.jpg',
+  '/assets/logo-pixaura.jpg',
+  '/assets/reseau-professionnel.jpg',
 ])
 
 /**

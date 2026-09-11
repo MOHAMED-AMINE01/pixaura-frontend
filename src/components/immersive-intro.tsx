@@ -187,6 +187,15 @@ export function ImmersiveIntro({ onComplete }: ImmersiveIntroProps = {}) {
     setFlashActive(false)
   }, [animateReset, clearHoldAnimations, holdProgress])
 
+  // If already completed in this session, immediately call onComplete and skip
+  useEffect(() => {
+    try {
+      if (typeof window !== 'undefined' && sessionStorage.getItem('pixaura_intro_completed') === 'true') {
+        onComplete?.()
+      }
+    } catch {}
+  }, [onComplete])
+
   useEffect(() => {
     stageRef.current = stage
   }, [stage])

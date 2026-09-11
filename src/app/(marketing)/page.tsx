@@ -67,21 +67,30 @@ export default function Home() {
 
   // Use useLayoutEffect to check URL parameter and handle scroll
   // This runs synchronously before paint, preventing intro from showing
+  // Check if intro has already been completed in this session or via skipIntro
   useLayoutEffect(() => {
     // Check URL parameter directly (available immediately on client)
     const urlParams = new URLSearchParams(window.location.search)
     const skipIntroParam = urlParams.get('skipIntro')
     const hash = window.location.hash.substring(1) // Remove the # symbol
 
-    // Check if we should skip intro based on sessionStorage (when returning from realisations/humind)
-    const skipIntroOnReturn = sessionStorage.getItem('skipIntroOnReturn') === 'true'
-    if (skipIntroOnReturn) {
-      sessionStorage.removeItem('skipIntroOnReturn')
-    }
+    let isIntroCompletedSession = false
+    let skipIntroOnReturn = false
+    try {
+      isIntroCompletedSession = sessionStorage.getItem('pixaura_intro_completed') === 'true'
+      skipIntroOnReturn = sessionStorage.getItem('skipIntroOnReturn') === 'true'
+      if (skipIntroOnReturn) {
+        sessionStorage.removeItem('skipIntroOnReturn')
+      }
+    } catch {}
 
-    if (skipIntroParam === 'true' || skipIntroOnReturn) {
+    if (skipIntroParam === 'true' || skipIntroOnReturn || isIntroCompletedSession) {
       // Skip intro immediately - before any paint happens
       setIntroComplete(true)
+      try {
+        sessionStorage.setItem('pixaura_intro_completed', 'true')
+        document.documentElement.classList.add('skip-intro-active')
+      } catch {}
 
       // Remove the parameter from URL without reload
       if (skipIntroParam === 'true') {
@@ -92,9 +101,10 @@ export default function Home() {
         window.history.replaceState({}, '', newUrl)
       }
 
-      // Don't scroll here - let useEffect handle it after content renders
-      // Just ensure we're at top initially
-      window.scrollTo({ top: 0, behavior: 'instant' })
+      // Don't scroll here if there is a hash or session ongoing - let useEffect handle it after content renders
+      if (!hash && !isIntroCompletedSession) {
+        window.scrollTo({ top: 0, behavior: 'instant' })
+      }
     } else {
       // Always ensure page starts at top if not skipping intro
       window.scrollTo({ top: 0, behavior: 'instant' })
@@ -102,6 +112,10 @@ export default function Home() {
   }, [])
 
   const handleIntroComplete = useCallback(() => {
+    try {
+      sessionStorage.setItem('pixaura_intro_completed', 'true')
+      document.documentElement.classList.add('skip-intro-active')
+    } catch {}
     setIntroComplete(true)
   }, [])
 

@@ -78,7 +78,7 @@ function MobileVideo({ src, index }: { src: string; index: number }) {
   }, [shouldLoad])
 
   return (
-    <div ref={containerRef} style={{ width: '100%', height: '100%', backgroundColor: '#000000' }}>
+    <div ref={containerRef} className="w-full h-full bg-black" style={{ width: '100%', height: '100%', backgroundColor: '#000000' }}>
       {shouldLoad && (
         <video
           ref={videoRef}
@@ -86,14 +86,15 @@ function MobileVideo({ src, index }: { src: string; index: number }) {
           muted
           loop
           playsInline
-          preload="metadata"
+          preload="auto"
           autoPlay
+          className="w-full h-full object-contain"
           style={{
             width: '100%',
             height: '100%',
-            objectFit: 'cover',
+            objectFit: 'contain',
             objectPosition: 'center',
-            backgroundColor: 'transparent'
+            backgroundColor: '#000000'
           }}
           onError={(e) => {
             // Silent error handling - show black background
@@ -112,11 +113,11 @@ export function PortfolioSection() {
   const latestProjects = [
     {
       id: 1,
-      client: "Touraine Cars",
-      title: t("portfolio.project1TitleAlt"), // "Expérience de Conduite Nocturne" (FR) / "Night Drive Experience" (EN)
+      client: "LÉPINE CONCEPTEUR",
+      title: t("portfolio.project1TitleAlt"), // "L'élégance du sur mesure" (FR) / "The elegance of tailor-made" (EN)
       category: t("portfolio.categoryFilmVideo"),
-      tags: [t("portfolio.categoryFilmVideo"), t("portfolio.tagSocial"), t("portfolio.tagEvent")],
-      video: getAssetUrl("/Banque d_images/halowen.mp4", "video"),
+      tags: [t("portfolio.categoryFilmVideo"), t("portfolio.tagSocial"), t("portfolio.tagBrandContent")],
+      video: "/assets/aurelien-lepine.mp4",
       poster: getAssetUrl("/Banque d_images/Copie de IMG_7149.jpg", "image"),
     },
     {
@@ -126,7 +127,7 @@ export function PortfolioSection() {
       category: t("portfolio.categoryPhoto"),
       tags: [t("portfolio.categoryPhoto"), t("portfolio.tagSocial"), t("portfolio.tagBranding")],
       video: null,
-      poster: getAssetUrl("/Banque d_images/art1.jpg", "image"),
+      poster: getAssetUrl("/assets/projet-artistique.jpg", "image"),
     },
     {
       id: 3,
@@ -145,15 +146,6 @@ export function PortfolioSection() {
       tags: [t("portfolio.categoryFilmVideo"), t("portfolio.categoryPhoto"), t("portfolio.tagEvent")],
       video: getAssetUrl("/Banque d_images/rally2.mp4", "video"),
       poster: getAssetUrl("/Banque d_images/Copie de M7_02930.jpg", "image"),
-    },
-    {
-      id: 6,
-      client: "Vouvray/Chenin",
-      title: t("portfolio.project6Title"),
-      category: t("portfolio.categoryPhoto"),
-      tags: [t("portfolio.categoryPhoto"), t("portfolio.tagBranding"), t("portfolio.tagDesign")],
-      video: null,
-      poster: getAssetUrl("/Banque d_images/Copie de M7_09197.jpg", "image"),
     },
     {
       id: 8,
@@ -180,21 +172,24 @@ export function PortfolioSection() {
 
   const renderPreviewCard = (withRef: boolean) => (
     <div ref={withRef ? previewRef : undefined} className="latest-preview-card">
-      <div className="latest-preview-media">
+      <div className="latest-preview-media bg-black">
         {activeProject?.video ? (
           <video
             ref={videoRef}
             key={`video-${activeProject.id}`}
+            src={activeProject.video}
             muted
             loop
             autoPlay
             playsInline
             preload="auto"
+            className="w-full h-full object-contain"
             style={{
               opacity: 1,
               willChange: 'auto',
               pointerEvents: 'none',
-              backgroundColor: 'transparent'
+              backgroundColor: '#000000',
+              objectFit: 'contain'
             }}
             onError={(e) => {
               // Silent error handling for Vercel
@@ -550,8 +545,8 @@ export function PortfolioSection() {
   }, [activeProject?.video, activeId, latestProjects])
 
   return (
-    <section id="portfolio" className="portfolio-latest-section relative overflow-hidden px-4 pb-24 pt-24 text-white md:px-8">
-      <div className="mx-auto flex max-w-6xl flex-col gap-14">
+    <section id="portfolio" className="portfolio-latest-section relative overflow-hidden px-4 pb-6 pt-1 sm:pb-16 sm:pt-16 md:pb-24 md:pt-24 text-white md:px-8">
+      <div className="mx-auto flex max-w-6xl flex-col gap-6 sm:gap-10 md:gap-14">
         <Reveal className="latest-header-top">
           <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
             <div className="space-y-4 flex-1 max-w-6xl">
