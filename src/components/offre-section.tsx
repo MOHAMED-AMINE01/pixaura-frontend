@@ -16,7 +16,7 @@ export function OffreSection() {
     production: {
       title: t("offreHome.productionTitle"),
       subtitle: t("offreHome.productionSubtitle"),
-      image: getAssetUrl("/Banque d_images/Copie de M7_00487.jpg", "image"),
+      image: "/assets/production-integree.jpg",
       intro: t("offreHome.productionIntro"),
       points: [
         t("offreHome.productionPoint1"),
@@ -32,7 +32,7 @@ export function OffreSection() {
     creativite: {
       title: t("offreHome.creativityTitle"),
       subtitle: t("offreHome.creativitySubtitle"),
-      image: getAssetUrl("/Banque d_images/art1.jpg", "image"),
+      image: "/assets/creativite-strategique.jpg",
       intro: t("offreHome.creativityIntro"),
       points: [
         t("offreHome.creativityPoint1"),
@@ -47,7 +47,7 @@ export function OffreSection() {
     suivi: {
       title: t("offreHome.suiviTitle"),
       subtitle: t("offreHome.suiviSubtitle"),
-      image: getAssetUrl("/Banque d_images/Copie de M7_03372.jpg", "image"),
+      image: "/assets/suivi-mesurable.jpg",
       intro: t("offreHome.suiviIntro"),
       points: [
         t("offreHome.suiviPoint1"),
@@ -84,7 +84,7 @@ export function OffreSection() {
       price: t("offreHome.croissancePrice"),
       priceDetail: t("offreHome.croissancePriceDetail"),
       description: t("offreHome.croissanceDesc"),
-      image: getAssetUrl("/Banque d_images/art1.jpg", "image"),
+      image: "/assets/creativite-strategique.jpg",
       features: [
         t("offreHome.croissanceFeature1"),
         t("offreHome.croissanceFeature2"),
@@ -101,7 +101,7 @@ export function OffreSection() {
       price: t("offreHome.signaturePrice"),
       priceDetail: t("offreHome.signaturePriceDetail"),
       description: t("offreHome.signatureDesc"),
-      image: getAssetUrl("/Banque d_images/Copie de M7_09197.jpg", "image"),
+      image: "/assets/suivi-mesurable.jpg",
       features: [
         t("offreHome.signatureFeature1"),
         t("offreHome.signatureFeature2"),
@@ -146,7 +146,7 @@ export function OffreSection() {
   }, [])
 
   return (
-    <section ref={sectionRef} id="offre" className="relative overflow-hidden px-6 py-24">
+    <section ref={sectionRef} id="offre" className="relative overflow-hidden px-4 sm:px-6 pb-6 pt-1 sm:py-16 md:py-24">
       {/* Subtle Background Effect */}
       <div className="pointer-events-none absolute inset-0">
         <div 
@@ -157,24 +157,24 @@ export function OffreSection() {
         />
       </div>
 
-      <div className="relative z-10 mx-auto max-w-7xl">
+      <div className="relative z-10 mx-auto max-w-7xl w-full">
         {/* Premium Header */}
-        <Reveal>
-          <div className="mb-16 text-left">
+        <Reveal className="w-full">
+          <div className="mb-6 sm:mb-12 md:mb-16 text-left w-full">
             <span className="inline-flex w-fit items-center gap-3 rounded-full border border-white/20 bg-white/10 px-6 py-2 text-sm font-semibold uppercase tracking-[0.5em] text-white shadow-[0_0_35px_rgba(89,129,255,0.25)] backdrop-blur-md">
               {t("offreHome.badge")}
             </span>
-            <h2 className="mt-8 text-4xl font-black leading-tight text-white md:text-5xl lg:text-6xl text-left">
+            <h2 className="mt-4 sm:mt-8 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black leading-tight text-white text-left">
               {t("offreHome.title")}
             </h2>
-            <p className="mt-6 text-base text-white/70 md:text-lg text-left whitespace-nowrap">
+            <p className="mt-3 sm:mt-6 text-base text-white/75 md:text-lg text-left whitespace-normal break-words leading-relaxed max-w-3xl">
               {t("offreHome.description")}
             </p>
           </div>
         </Reveal>
 
         {/* Premium Design Cards - Style Réalisations */}
-        <div className="mb-24 grid gap-8 md:grid-cols-3">
+        <div className="mb-8 sm:mb-16 md:mb-24 grid gap-5 sm:gap-6 md:gap-8 md:grid-cols-3">
           {[
             { key: "production", badge: t("offreHome.productionBadge") },
             { key: "creativite", badge: t("offreHome.creativityBadge") },

@@ -169,7 +169,7 @@ export function ProjectModal({ open, onOpenChange, project }: ProjectModalProps)
             </DialogTitle>
           </VisuallyHidden.Root>
 
-          <DialogHeader className="space-y-4">
+          <DialogHeader className="space-y-4 text-left">
             {/* Project Image */}
             <div className="relative w-full h-64 md:h-72 overflow-hidden rounded-[28px]">
               <Image

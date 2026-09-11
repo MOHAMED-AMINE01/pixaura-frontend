@@ -6,7 +6,7 @@ interface SectionDividerProps {
 
 export function SectionDivider({ label }: SectionDividerProps) {
   return (
-    <div className="relative mx-auto my-24 flex w-full max-w-6xl items-center justify-center px-6">
+    <div className="relative mx-auto my-3 sm:my-6 md:my-16 lg:my-24 flex w-full max-w-6xl items-center justify-center px-4 sm:px-6">
       <div className="relative h-[3px] w-full overflow-hidden rounded-full bg-gradient-to-r from-transparent via-white/70 to-transparent">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.9),transparent_75%)]" />
         <div className="absolute inset-0 animate-[shimmer_2.5s_linear_infinite] bg-[linear-gradient(90deg,transparent,rgba(255,255,255,1),transparent)] opacity-90" />
@@ -18,24 +18,24 @@ export function SectionDivider({ label }: SectionDividerProps) {
 
       {label ? (
         <div className="absolute flex items-center gap-5">
-          <div className="relative flex items-center justify-center rounded-full border border-white/45 bg-white/15 px-12 py-3 backdrop-blur-2xl shadow-[0_0_40px_rgba(255,255,255,0.35)]">
+          <div className="relative flex items-center justify-center rounded-full border border-white/45 bg-white/15 px-6 py-1.5 sm:px-12 sm:py-3 backdrop-blur-2xl shadow-[0_0_40px_rgba(255,255,255,0.35)]">
             <div className="absolute inset-0 rounded-full bg-gradient-to-r from-cyan-200/70 via-white/60 to-purple-300/70" />
             <div className="absolute -inset-[6px] rounded-full border border-white/40" />
             <div className="absolute -inset-[16px] h-full w-full animate-[rotateGlow_6s_linear_infinite] rounded-full border-2 border-white/25 opacity-90" />
-            <span className="relative text-xs font-semibold uppercase tracking-[0.7em] text-white">
+            <span className="relative text-[11px] sm:text-xs font-semibold uppercase tracking-[0.5em] sm:tracking-[0.7em] text-white">
               {label}
             </span>
           </div>
         </div>
       ) : null}
 
-      <div className="pointer-events-none absolute inset-0 flex items-center justify-between px-16">
+      <div className="pointer-events-none absolute inset-0 hidden sm:flex items-center justify-between px-16">
         <span className="h-28 w-px bg-gradient-to-b from-transparent via-white/60 to-transparent" />
         <span className="h-28 w-px bg-gradient-to-b from-transparent via-white/60 to-transparent" />
       </div>
 
       <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-        <span className="h-40 w-[80%] max-w-4xl animate-[pulseGlow_4s_ease-in-out_infinite] rounded-full bg-gradient-to-r from-cyan-200/25 via-white/15 to-purple-300/25 blur-3xl opacity-90" />
+        <span className="h-16 sm:h-40 w-[80%] max-w-4xl animate-[pulseGlow_4s_ease-in-out_infinite] rounded-full bg-gradient-to-r from-cyan-200/25 via-white/15 to-purple-300/25 blur-3xl opacity-90" />
       </div>
     </div>
   )

@@ -34,7 +34,7 @@ export function OffreModal({ open, onOpenChange, offre }: OffreModalProps) {
           </DialogTitle>
         </VisuallyHidden.Root>
         
-        <DialogHeader className="space-y-4">
+        <DialogHeader className="space-y-4 text-left">
           {/* Offre Image */}
           <div className="relative w-full h-64 md:h-72 overflow-hidden rounded-[28px]">
             <Image
@@ -54,7 +54,7 @@ export function OffreModal({ open, onOpenChange, offre }: OffreModalProps) {
             </div>
             
             {/* Title - Visual only */}
-            <div className="absolute bottom-3 left-3 right-3">
+            <div className="absolute bottom-3 left-3 right-3 text-left">
               <h2 className="text-2xl md:text-3xl font-black text-white mb-1 drop-shadow-xl" style={{ 
                 fontFamily: 'Montserrat, sans-serif',
                 letterSpacing: '-0.02em',
@@ -68,38 +68,38 @@ export function OffreModal({ open, onOpenChange, offre }: OffreModalProps) {
           </div>
 
           {/* Content Sections */}
-          <div className="space-y-5 pt-5 px-5 pb-5">
+          <div className="space-y-4 sm:space-y-5 p-2 sm:p-5 text-left">
             {/* Présentation */}
-            <div className="rounded-[24px] border border-white/15 bg-white/8 p-6 shadow-lg shadow-black/40 backdrop-blur-xl">
-              <h3 className="text-lg font-semibold uppercase tracking-[0.25em] text-white/80 mb-3">
+            <div className="rounded-[24px] border border-white/15 bg-white/8 p-5 sm:p-6 shadow-lg shadow-black/40 backdrop-blur-xl text-left">
+              <h3 className="text-base sm:text-lg font-semibold uppercase tracking-[0.25em] text-white/85 mb-3 text-left">
                 {t("offreHome.modalPresentation")}
               </h3>
-              <p className="text-sm text-white/70 leading-relaxed">
+              <p className="text-sm text-white/75 leading-relaxed text-left">
                 {offre.intro}
               </p>
             </div>
 
             {/* Points clés */}
-            <div className="rounded-[24px] border border-white/15 bg-white/8 p-6 shadow-lg shadow-black/40 backdrop-blur-xl">
-              <h3 className="text-lg font-semibold uppercase tracking-[0.25em] text-white/80 mb-3">
+            <div className="rounded-[24px] border border-white/15 bg-white/8 p-5 sm:p-6 shadow-lg shadow-black/40 backdrop-blur-xl text-left">
+              <h3 className="text-base sm:text-lg font-semibold uppercase tracking-[0.25em] text-white/85 mb-4 text-left">
                 {t("offreHome.modalKeyPoints")}
               </h3>
-              <ul className="space-y-3">
+              <ul className="space-y-3.5 text-left">
                 {offre.points.map((point, index) => (
-                  <li key={index} className="flex items-start gap-3 text-sm text-white/70 leading-relaxed">
-                    <span className="text-white/80 mt-1.5 text-lg font-bold">•</span>
-                    <span>{point}</span>
+                  <li key={index} className="flex items-start gap-3 text-left text-sm text-white/75 leading-relaxed">
+                    <span className="text-white/80 shrink-0 font-bold select-none text-base leading-none mt-1" aria-hidden="true">•</span>
+                    <span className="flex-1 text-left">{point}</span>
                   </li>
                 ))}
               </ul>
             </div>
 
             {/* En résumé */}
-            <div className="rounded-[24px] border border-white/15 bg-white/8 p-6 shadow-lg shadow-black/40 backdrop-blur-xl">
-              <h3 className="text-lg font-semibold uppercase tracking-[0.25em] text-white/80 mb-3">
+            <div className="rounded-[24px] border border-white/15 bg-white/8 p-5 sm:p-6 shadow-lg shadow-black/40 backdrop-blur-xl text-left">
+              <h3 className="text-base sm:text-lg font-semibold uppercase tracking-[0.25em] text-white/85 mb-3 text-left">
                 {t("offreHome.modalSummary")}
               </h3>
-              <p className="text-sm text-white/70 leading-relaxed italic">
+              <p className="text-sm text-white/75 leading-relaxed italic text-left">
                 {offre.conclusion}
               </p>
             </div>

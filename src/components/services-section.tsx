@@ -60,14 +60,12 @@ function formatDescription(text: string) {
 
 function PhotoSlider() {
   const images = [
-    "/Banque d_images/Copie de M7_00197.jpg", // Position 1
-    "/Banque d_images/Copie de M7_00259.jpg", // Position 2
+    "/assets/valorisation-marque.jpg", // Position 1
+    "/assets/production-integree.jpg", // Position 2
     "/Banque d_images/Copie de LDP_5182.jpg", // Position 3
     "/Banque d_images/Copie de DSC04614.jpg",
     "/Banque d_images/Copie de DSC04678.jpg",
-    "/Banque d_images/Copie de DSC04796.jpg", // Position 6 - remplacée
-    "/Banque d_images/Copie de M7_09197.jpg",
-    "/Banque d_images/Copie de M7_09236.jpg", // Position 8 - remplacée
+    "/assets/service-publicitaire.jpg", // Position 6 - remplacée
   ]
 
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -199,9 +197,9 @@ function ElasticGridBenefits() {
       title: t("services.benefit1Title"),
       desc: t("services.benefit1Desc"),
       label: t("services.benefit1Label"),
-      img: getAssetUrl("/Banque d_images/art1.jpg", "image"),
+      img: "/assets/valorisation-marque.jpg",
       icon: Target,
-      imagePath: "/Banque d_images/art1.jpg",
+      imagePath: "/assets/valorisation-marque.jpg",
       delay: 100,
       imagePosition: "left" as const,
     },
@@ -209,9 +207,9 @@ function ElasticGridBenefits() {
       title: t("services.benefit4Title"),
       desc: t("services.benefit4Desc"),
       label: t("services.benefit4Label"),
-      img: getAssetUrl("/Banque d_images/Copie de DSC04796.jpg", "image"),
+      img: "/assets/service-publicitaire.jpg",
       icon: DollarSign,
-      imagePath: "/Banque d_images/Copie de DSC04796.jpg",
+      imagePath: "/assets/service-publicitaire.jpg",
       delay: 200,
       imagePosition: "right" as const,
     },
@@ -219,9 +217,9 @@ function ElasticGridBenefits() {
       title: t("services.benefit2Title"),
       desc: t("services.benefit2Desc"),
       label: t("services.benefit2Label"),
-      img: getAssetUrl("/Banque d_images/Copie de M7_00487.jpg", "image"),
+      img: "/assets/reseau-professionnel.jpg",
       icon: TrendingUp,
-      imagePath: "/Banque d_images/Copie de M7_00487.jpg",
+      imagePath: "/assets/reseau-professionnel.jpg",
       delay: 300,
       imagePosition: "left" as const,
     },
@@ -229,9 +227,9 @@ function ElasticGridBenefits() {
       title: t("services.benefit3Title"),
       desc: t("services.benefit3Desc"),
       label: t("services.benefit3Label"),
-      img: getAssetUrl("/Banque d_images/art2.jpg", "image"),
+      img: "/assets/formation-continue.jpg",
       icon: Palette,
-      imagePath: "/Banque d_images/art2.jpg",
+      imagePath: "/assets/formation-continue.jpg",
       delay: 400,
       imagePosition: "right" as const,
     },
@@ -277,7 +275,7 @@ function ElasticGridBenefits() {
               
               {/* Content Section */}
               <div className="relative w-full md:w-[65%] flex flex-col bg-gradient-to-br from-white/5 via-white/3 to-transparent min-h-0">
-                <div className="pt-8 pb-8 px-8 md:pt-10 md:pb-10 md:px-10 flex-1 flex flex-col min-h-0">
+                <div className="pt-5 pb-5 px-5 sm:pt-8 sm:pb-8 sm:px-8 md:pt-10 md:pb-10 md:px-10 flex-1 flex flex-col min-h-0">
                   <h3 className="text-2xl md:text-[1.75rem] font-bold leading-[1.2] text-white md:mb-4 whitespace-pre-line">
                     {benefit.title}
                   </h3>
@@ -441,9 +439,9 @@ export function ServicesSection() {
   },
 ]
   return (
-    <section id="services" className="relative px-4 sm:px-6 pb-16 sm:pb-20 md:pb-28 pt-12 sm:pt-16">
-      <div className="mx-auto flex max-w-6xl flex-col gap-12 sm:gap-16 md:gap-20">
-        <div className="relative overflow-hidden rounded-[24px] sm:rounded-[32px] md:rounded-[40px] border border-white/15 bg-white/5 p-6 sm:p-8 md:p-10 lg:p-14 text-white backdrop-blur-xl">
+    <section id="services" className="relative px-4 sm:px-6 pb-6 sm:pb-16 md:pb-28 pt-1 sm:pt-8 md:pt-16">
+      <div className="mx-auto flex max-w-6xl flex-col gap-6 sm:gap-12 md:gap-20">
+        <div className="relative overflow-hidden rounded-[24px] sm:rounded-[32px] md:rounded-[40px] border border-white/15 bg-white/5 p-4 sm:p-8 md:p-10 lg:p-14 text-white backdrop-blur-xl">
           <div className="absolute inset-y-0 -left-20 hidden w-1/3 bg-[radial-gradient(circle_at_center,_rgba(0,115,255,0.35),_transparent_70%)] opacity-70 md:block" />
           
           {/* Image - Right Side - Comme la version originale : 1/3 de la largeur, sujet centré */}
@@ -477,13 +475,13 @@ export function ServicesSection() {
           </div>
 
           {/* Accompagnement & Croissance - Bloc premium en dessous - Positionné à gauche avec marge, sans toucher l'image */}
-          <Reveal delay={300} className="relative z-10 mt-8 sm:mt-10 md:mt-12">
+          <Reveal delay={300} className="relative z-10 mt-5 sm:mt-10 md:mt-12">
             {/* Sur mobile : pleine largeur (w-full). Sur desktop : largeur limitée pour ne pas toucher l'image */}
-            <div className="relative rounded-xl sm:rounded-2xl border border-white/20 bg-white/8 p-6 sm:p-8 lg:p-12 xl:p-14 backdrop-blur-2xl shadow-[0_20px_60px_rgba(0,0,0,0.4)] w-full md:max-w-[64%] lg:max-w-[60%] mr-auto">
+            <div className="relative rounded-xl sm:rounded-2xl border border-white/20 bg-white/8 p-4 sm:p-8 lg:p-12 xl:p-14 backdrop-blur-2xl shadow-[0_20px_60px_rgba(0,0,0,0.4)] w-full md:max-w-[64%] lg:max-w-[60%] mr-auto">
               {/* Subtle Glow */}
               <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-white/10 via-transparent to-white/10 blur-xl opacity-50" />
               
-              <div className="relative space-y-10 sm:space-y-12">
+              <div className="relative space-y-6 sm:space-y-10 md:space-y-12">
                 {pillars.map((pillar, index) => (
                   <div key={pillar.title} className="group/pillar">
                     <div className="flex items-start gap-4">
@@ -500,11 +498,24 @@ export function ServicesSection() {
                       <div className="flex-1 space-y-4 min-w-0">
                         <div className="flex items-center gap-3">
                           <span className="text-xs sm:text-sm md:text-base font-bold uppercase tracking-[0.45em] text-white/90 break-words">
-                            {pillar.title}
+                            {pillar.title.includes("\n") ? (
+                              pillar.title.split("\n").map((part, i) => (
+                                <span key={i} className="block whitespace-nowrap">
+                                  {part}
+                                </span>
+                              ))
+                            ) : pillar.title.includes("ACCOMPAGNEMENT") ? (
+                              <>
+                                <span className="block">ACCOMPAGNEMENT</span>
+                                <span className="block whitespace-nowrap">SUR MESURE</span>
+                              </>
+                            ) : (
+                              pillar.title
+                            )}
                           </span>
                           <div className="flex-1 h-px bg-gradient-to-r from-white/40 via-white/25 to-transparent" />
                         </div>
-                        <p className="text-base sm:text-lg md:text-xl text-white/85 leading-relaxed group-hover/pillar:text-white/95 transition-colors duration-500 break-words overflow-wrap-anywhere">
+                        <p className="text-base sm:text-lg md:text-xl text-white/85 leading-relaxed group-hover/pillar:text-white/95 transition-colors duration-500 break-words overflow-wrap-anywhere text-justify" style={{ textAlign: "justify" }}>
                           {pillar.description}
                         </p>
                       </div>

@@ -73,11 +73,11 @@ export function AgenceHomeSection() {
   }, [])
 
   return (
-    <section id="agence" className="relative bg-transparent py-24 px-6">
+    <section id="agence" className="relative bg-transparent pb-6 pt-1 sm:py-16 md:py-24 px-4 sm:px-6">
       <div className="mx-auto max-w-7xl">
         {/* Section Manifester Valeurs */}
         <Reveal>
-          <div className="mb-20 text-left">
+          <div className="mb-6 sm:mb-12 md:mb-20 text-left">
             <span className="inline-flex w-fit items-center gap-3 rounded-full border border-white/20 bg-white/10 px-6 py-2 text-sm font-semibold uppercase tracking-[0.5em] text-white shadow-[0_0_35px_rgba(89,129,255,0.25)] backdrop-blur-md">
               {t("agenceHome.valuesBadge")}
             </span>
@@ -91,7 +91,7 @@ export function AgenceHomeSection() {
         </Reveal>
 
         {/* Values Cards - Style Réalisations Premium */}
-        <div className={`mb-32 grid grid-cols-1 gap-8 md:grid-cols-3 ${language === 'en' ? 'md:items-stretch' : ''}`}>
+        <div className={`mb-8 sm:mb-16 md:mb-32 grid grid-cols-1 gap-6 sm:gap-8 md:grid-cols-3 ${language === 'en' ? 'md:items-stretch' : ''}`}>
           {values.map((value, index) => {
             return (
               <Reveal key={index} delay={index * 100} className="min-w-0">
@@ -132,7 +132,7 @@ export function AgenceHomeSection() {
         </div>
 
         {/* Section Separator */}
-        <div className="relative mb-20 py-8">
+        <div className="relative mb-8 sm:mb-14 md:mb-20 py-4 sm:py-8">
           <div className="mx-auto max-w-7xl">
             <div className="relative h-px bg-gradient-to-r from-transparent via-white/25 to-transparent">
               <div className="absolute left-1/2 h-px w-32 -translate-x-1/2 bg-gradient-to-r from-blue-400/50 via-purple-400/70 to-cyan-400/50" />
@@ -142,7 +142,7 @@ export function AgenceHomeSection() {
 
         {/* Section Les Fondateurs */}
         <Reveal>
-          <div className="mb-16 text-left">
+          <div className="mb-6 sm:mb-12 md:mb-16 text-left">
             <span className="inline-flex w-fit items-center gap-3 rounded-full border border-white/20 bg-white/10 px-6 py-2 text-sm font-semibold uppercase tracking-[0.5em] text-white shadow-[0_0_35px_rgba(89,129,255,0.25)] backdrop-blur-md">
               {t("agenceHome.teamBadge")}
             </span>
@@ -156,7 +156,7 @@ export function AgenceHomeSection() {
         </Reveal>
 
         {/* Founders Cards - Mobile: Style NOS EXPERTISES, Desktop: Split Layout */}
-        <div className="mb-32 grid gap-10 md:grid-cols-2 md:items-stretch">
+        <div className="mb-8 sm:mb-16 md:mb-32 grid gap-6 sm:gap-8 md:gap-10 md:grid-cols-2 md:items-stretch">
           {founders.map((founder, index) => (
             <Reveal key={index} delay={index * 150}>
               {/* Mobile: IMPROVED PREMIUM VERSION - ENHANCED DESIGN */}
@@ -191,14 +191,6 @@ export function AgenceHomeSection() {
                   {/* Enhanced gradient overlay - protects face visibility */}
                   <div className="absolute inset-0 bg-gradient-to-b from-black/0 via-black/20 to-black/95" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-                  
-                  {/* Badge positioned bottom-right on image - doesn't cover face */}
-                  <div className="absolute bottom-4 right-4 z-20">
-                    <span className="inline-flex items-center gap-2 rounded-full border-2 border-white/30 bg-gradient-to-r from-white/25 via-white/20 to-white/25 px-4 py-1.5 text-[9px] sm:text-[10px] font-extrabold uppercase tracking-[0.35em] text-white shadow-[0_0_50px_rgba(89,129,255,0.45),0_4px_15px_rgba(0,0,0,0.5)] backdrop-blur-2xl">
-                      <Sparkles className="h-3 w-3 sm:h-3.5 sm:w-3.5 text-sky-300 drop-shadow-[0_0_12px_rgba(56,189,248,0.8)] animate-pulse" style={{ animationDuration: '2s' }} />
-                      {t("agenceHome.founder")}
-                    </span>
-                  </div>
                 </div>
 
                 {/* Content Section - Below Image, Protected Space */}
@@ -247,36 +239,27 @@ export function AgenceHomeSection() {
                     </p>
                   </div>
                   
-                  {/* Instagram Section - Enhanced with Separator */}
-                  <div className="mt-6 pt-6 border-t border-white/10 flex items-center justify-end gap-4">
+                  {/* Founder Badge & Instagram Section - Horizontally Aligned */}
+                  <div className="mt-6 pt-6 border-t border-white/10 flex items-center justify-between gap-3">
+                    {/* Founder Badge - Text only, no icon */}
+                    <span className="inline-flex items-center rounded-full border border-white/25 bg-white/10 px-3.5 py-1.5 sm:px-4 sm:py-2 text-[9px] sm:text-[10px] font-extrabold uppercase tracking-[0.35em] text-white shadow-[0_4px_15px_rgba(0,0,0,0.4)] backdrop-blur-xl shrink-0">
+                      {t("agenceHome.founder")}
+                    </span>
+
                     {/* Elegant Separator Line */}
-                    <div className="flex-1 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent">
-                      <div className="h-px w-16 bg-gradient-to-r from-purple-400/60 via-pink-400/60 to-orange-400/60 blur-sm ml-auto" />
+                    <div className="flex-1 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent min-w-[16px]">
+                      <div className="h-px w-12 sm:w-16 bg-gradient-to-r from-purple-400/60 via-pink-400/60 to-orange-400/60 blur-sm ml-auto" />
                     </div>
                     
-                    {/* Instagram Button - Enhanced */}
+                    {/* Instagram Button - Floating icon with colored background, no border/frame */}
                     <a
                       href={founder.instagram}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group/ig relative inline-flex items-center gap-2.5 px-5 py-3 rounded-full bg-gradient-to-r from-purple-600 via-pink-500 to-orange-500 text-white font-semibold text-sm transition-all duration-300 hover:scale-110 hover:shadow-[0_0_35px_rgba(225,48,108,0.7)] overflow-hidden backdrop-blur-sm"
-                      style={{ fontFamily: 'Montserrat, sans-serif' }}
+                      className="group/ig relative inline-flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-gradient-to-tr from-amber-500 via-pink-500 to-purple-600 text-white transition-all duration-300 hover:scale-110 shadow-[0_4px_16px_rgba(225,48,108,0.4)] hover:shadow-[0_0_25px_rgba(225,48,108,0.6)] shrink-0 border-0"
+                      aria-label={`Instagram de ${founder.name}`}
                     >
-                      {/* Animated gradient background */}
-                      <div className="absolute inset-0 bg-gradient-to-r from-purple-600 via-pink-500 to-orange-500 opacity-100 group-hover/ig:opacity-0 transition-opacity duration-300" />
-                      <div className="absolute inset-0 bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 opacity-0 group-hover/ig:opacity-100 transition-opacity duration-300" />
-                      
-                      {/* Shine effect */}
-                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full group-hover/ig:translate-x-full transition-transform duration-700" />
-                      
-                      {/* Icon */}
-                      <InstagramIcon className="w-4 h-4 sm:w-5 sm:h-5 relative z-10" />
-                      
-                      {/* Text */}
-                      <span className="relative z-10 hidden sm:inline">Instagram</span>
-                      
-                      {/* Glow effect */}
-                      <div className="absolute -inset-1.5 bg-gradient-to-r from-purple-600 via-pink-500 to-orange-500 rounded-full blur-md opacity-50 group-hover/ig:opacity-80 transition-opacity duration-300 -z-10" />
+                      <InstagramIcon className="w-4 h-4 sm:w-5 sm:h-5 text-white transition-transform duration-300 group-hover/ig:scale-110" />
                     </a>
                   </div>
                 </div>
@@ -317,98 +300,89 @@ export function AgenceHomeSection() {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/50 to-black/20" />
                     <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-transparent" />
                     <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-black/20" />
-                    
-                    {/* Premium Badge - Enhanced Visibility */}
-                    <div className="absolute bottom-6 left-6 z-10">
-                      <span className="inline-flex items-center gap-2.5 rounded-full border border-white/35 bg-gradient-to-br from-white/25 via-white/20 to-white/15 px-5 py-2.5 text-[11px] font-bold uppercase tracking-[0.35em] text-white backdrop-blur-xl shadow-[0_4px_20px_rgba(0,0,0,0.4)]">
-                        <span className="w-1.5 h-1.5 rounded-full bg-white/80 shadow-[0_0_6px_rgba(255,255,255,0.6)]" />
-                        {t("agenceHome.founder")}
-                      </span>
-                    </div>
                   </div>
                   
                   {/* Content Container - Right Side (58%) */}
-                  <div className="relative w-[58%] p-10 pb-12 flex flex-col justify-start z-10">
+                  <div className="relative w-[58%] p-8 lg:p-10 pb-24 lg:pb-24 flex flex-col justify-start z-10">
                     {/* Enhanced Background for Better Text Contrast */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-black/40 via-black/30 to-black/40 rounded-r-[32px]" />
-                    <div className="absolute inset-0 bg-gradient-to-br from-black/20 via-black/15 to-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-r-[32px]" />
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.02] to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-br from-black/40 via-black/30 to-black/40 rounded-r-[32px] pointer-events-none" />
+                    <div className="absolute inset-0 bg-gradient-to-br from-black/20 via-black/15 to-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-r-[32px] pointer-events-none" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.02] to-transparent pointer-events-none" />
                     
-                    {/* Name - Ultra Large Bold with Premium Typography */}
-                    <h3 className="relative min-h-[5.25rem] line-clamp-2 text-4xl lg:text-5xl font-black text-white leading-[1.1] mb-5 tracking-tight" style={{ 
-                      fontFamily: 'Montserrat, sans-serif',
-                      letterSpacing: '-0.03em',
-                      textShadow: '0 3px 25px rgba(0,0,0,0.5), 0 0 50px rgba(0,0,0,0.3), 0 1px 2px rgba(0,0,0,0.8)',
-                    }}>
-                      {founder.name}
-                    </h3>
-                    
-                    {/* Premium Divider Line with Glow */}
-                    <div className="relative w-full h-[1px] mb-6">
-                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent" />
-                      <div className="absolute inset-0 bg-gradient-to-r from-primary/40 via-cyan-400/40 to-primary/40 blur-sm opacity-70" />
-                    </div>
-                    
-                    {/* Role - Enhanced Readability */}
-                    <p className="relative min-h-[5.25rem] line-clamp-4 text-white text-[13px] font-bold uppercase tracking-[0.4em] leading-tight mb-8" style={{ 
-                      fontFamily: 'Montserrat, sans-serif',
-                      letterSpacing: '0.35em',
-                      textShadow: '0 2px 15px rgba(0,0,0,0.5), 0 1px 3px rgba(0,0,0,0.7)',
-                    }}>
-                      {founder.role}
-                    </p>
-                    
-                    {/* Description - Ultra Clear & Readable */}
-                    <p className="relative min-h-[7rem] line-clamp-4 text-white text-[16px] leading-[1.75] font-medium mb-8" style={{ 
-                      fontFamily: 'Montserrat, sans-serif',
-                      lineHeight: '1.75',
-                      textShadow: '0 2px 20px rgba(0,0,0,0.6), 0 1px 4px rgba(0,0,0,0.8)',
-                    }}>
-                      {founder.description}
-                    </p>
-                    
-                    {/* Vision - Premium Separated Section */}
-                    <div className="relative pt-6 border-t border-white/25">
-                      <p className="min-h-[6.5rem] line-clamp-4 text-white text-[14px] leading-[1.8] font-normal mb-6" style={{ 
+                    <div className="relative flex flex-col z-10">
+                      {/* Name - Ultra Large Bold with Premium Typography */}
+                      <h3 className="relative min-h-[5.25rem] line-clamp-2 text-4xl lg:text-5xl font-black text-white leading-[1.1] mb-5 tracking-tight" style={{ 
                         fontFamily: 'Montserrat, sans-serif',
-                        lineHeight: '1.8',
-                        textShadow: '0 2px 18px rgba(0,0,0,0.55), 0 1px 3px rgba(0,0,0,0.75)',
+                        letterSpacing: '-0.03em',
+                        textShadow: '0 3px 25px rgba(0,0,0,0.5), 0 0 50px rgba(0,0,0,0.3), 0 1px 2px rgba(0,0,0,0.8)',
                       }}>
-                        {founder.vision}
+                        {founder.name}
+                      </h3>
+                      
+                      {/* Premium Divider Line with Glow */}
+                      <div className="relative w-full h-[1px] mb-6">
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent" />
+                        <div className="absolute inset-0 bg-gradient-to-r from-primary/40 via-cyan-400/40 to-primary/40 blur-sm opacity-70" />
+                      </div>
+                      
+                      {/* Role - Enhanced Readability */}
+                      <p className="relative min-h-[5.25rem] line-clamp-4 text-white text-[13px] font-bold uppercase tracking-[0.4em] leading-tight mb-8" style={{ 
+                        fontFamily: 'Montserrat, sans-serif',
+                        letterSpacing: '0.35em',
+                        textShadow: '0 2px 15px rgba(0,0,0,0.5), 0 1px 3px rgba(0,0,0,0.7)',
+                      }}>
+                        {founder.role}
                       </p>
                       
-                      {/* Instagram Section - Enhanced with Separator */}
-                      <div className="mt-6 pt-6 border-t border-white/15 flex items-center justify-end gap-4">
-                        {/* Elegant Separator Line */}
-                        <div className="flex-1 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent">
-                          <div className="h-px w-20 bg-gradient-to-r from-purple-400/60 via-pink-400/60 to-orange-400/60 blur-sm ml-auto" />
-                        </div>
-                        
-                        {/* Instagram Button - Enhanced */}
-                        <a
-                          href={founder.instagram}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="group/ig relative inline-flex items-center gap-2.5 px-5 py-3 rounded-full bg-gradient-to-r from-purple-600 via-pink-500 to-orange-500 text-white font-semibold text-sm transition-all duration-300 hover:scale-110 hover:shadow-[0_0_35px_rgba(225,48,108,0.7)] overflow-hidden backdrop-blur-sm"
-                          style={{ fontFamily: 'Montserrat, sans-serif' }}
-                        >
-                          {/* Animated gradient background */}
-                          <div className="absolute inset-0 bg-gradient-to-r from-purple-600 via-pink-500 to-orange-500 opacity-100 group-hover/ig:opacity-0 transition-opacity duration-300" />
-                          <div className="absolute inset-0 bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 opacity-0 group-hover/ig:opacity-100 transition-opacity duration-300" />
-                          
-                          {/* Shine effect */}
-                          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full group-hover/ig:translate-x-full transition-transform duration-700" />
-                          
-                          {/* Icon */}
-                          <InstagramIcon className="w-5 h-5 relative z-10" />
-                          
-                          {/* Text */}
-                          <span className="relative z-10">Instagram</span>
-                          
-                          {/* Glow effect */}
-                          <div className="absolute -inset-1.5 bg-gradient-to-r from-purple-600 via-pink-500 to-orange-500 rounded-full blur-md opacity-50 group-hover/ig:opacity-80 transition-opacity duration-300 -z-10" />
-                        </a>
+                      {/* Description - Ultra Clear & Readable */}
+                      <p className="relative min-h-[7rem] line-clamp-4 text-white text-[16px] leading-[1.75] font-medium mb-8" style={{ 
+                        fontFamily: 'Montserrat, sans-serif',
+                        lineHeight: '1.75',
+                        textAlign: 'justify',
+                        textShadow: '0 2px 20px rgba(0,0,0,0.6), 0 1px 4px rgba(0,0,0,0.8)',
+                      }}>
+                        {founder.description}
+                      </p>
+                      
+                      {/* Vision - Premium Separated Section */}
+                      <div className="relative pt-6 border-t border-white/25">
+                        <p className="min-h-[6.5rem] line-clamp-4 text-white text-[14px] leading-[1.8] font-normal mb-2" style={{ 
+                          fontFamily: 'Montserrat, sans-serif',
+                          lineHeight: '1.8',
+                          textAlign: 'justify',
+                          textShadow: '0 2px 18px rgba(0,0,0,0.55), 0 1px 3px rgba(0,0,0,0.75)',
+                        }}>
+                          {founder.vision}
+                        </p>
                       </div>
+                    </div>
+                  </div>
+
+                  {/* Actions Bar - Single parent container with flex items-center justify-between */}
+                  <div className="absolute bottom-6 left-6 right-6 lg:bottom-8 lg:left-8 lg:right-8 flex items-center justify-between gap-4 z-20 pointer-events-none">
+                    {/* Founder Badge - Text only, no icon */}
+                    <div className="pointer-events-auto shrink-0">
+                      <span className="inline-flex items-center rounded-full border border-white/25 bg-white/10 px-5 py-2.5 text-[11px] font-bold uppercase tracking-[0.35em] text-white backdrop-blur-xl shadow-[0_4px_20px_rgba(0,0,0,0.4)]">
+                        {t("agenceHome.founder")}
+                      </span>
+                    </div>
+
+                    {/* Elegant Separator Line */}
+                    <div className="flex-1 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent min-w-[20px]">
+                      <div className="h-px w-20 bg-gradient-to-r from-purple-400/60 via-pink-400/60 to-orange-400/60 blur-sm ml-auto" />
+                    </div>
+
+                    {/* Instagram Button - Floating icon with colored background, no border/frame */}
+                    <div className="pointer-events-auto shrink-0">
+                      <a
+                        href={founder.instagram}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group/ig relative inline-flex items-center justify-center w-10 h-10 lg:w-11 lg:h-11 rounded-full bg-gradient-to-tr from-amber-500 via-pink-500 to-purple-600 text-white transition-all duration-300 hover:scale-110 shadow-[0_4px_16px_rgba(225,48,108,0.4)] hover:shadow-[0_0_25px_rgba(225,48,108,0.6)] shrink-0 border-0"
+                        aria-label={`Instagram de ${founder.name}`}
+                      >
+                        <InstagramIcon className="w-5 h-5 text-white transition-transform duration-300 group-hover/ig:scale-110" />
+                      </a>
                     </div>
                   </div>
                 </div>

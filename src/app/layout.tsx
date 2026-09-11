@@ -12,10 +12,43 @@ const montserrat = Montserrat({ subsets: ["latin"], variable: "--font-sans" })
 const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-heading" })
 
 export const metadata: Metadata = {
-  title: "Pixaura_IT - Branding & Creative Agency",
+  title: "Pixaura International : Agence créative française",
   description:
     "Unlock your brand's true aura through premium branding, cinematographic production, and strategic digital marketing.",
   generator: "v0.app",
+  icons: {
+    icon: [
+      { url: "/assets/logo-pixaura.jpg" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/icon.png", type: "image/png" },
+    ],
+    shortcut: "/assets/logo-pixaura.jpg",
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+      { url: "/assets/logo-pixaura.jpg" },
+    ],
+  },
+  openGraph: {
+    title: "Pixaura International : Agence créative française",
+    description:
+      "Unlock your brand's true aura through premium branding, cinematographic production, and strategic digital marketing.",
+    images: [
+      {
+        url: "/assets/logo-pixaura.jpg",
+        width: 1080,
+        height: 1080,
+        alt: "Pixaura International : Agence créative française",
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Pixaura International : Agence créative française",
+    description:
+      "Unlock your brand's true aura through premium branding, cinematographic production, and strategic digital marketing.",
+    images: ["/assets/logo-pixaura.jpg"],
+  },
 }
 
 export default function RootLayout({
@@ -64,7 +97,8 @@ export default function RootLayout({
                 }
                 try {
                   const urlParams = new URLSearchParams(window.location.search);
-                  if (urlParams.get('skipIntro') === 'true') {
+                  const isIntroCompleted = sessionStorage.getItem('pixaura_intro_completed') === 'true';
+                  if (urlParams.get('skipIntro') === 'true' || isIntroCompleted) {
                     document.documentElement.classList.add('skip-intro-active');
                   }
                 } catch (e) {}
@@ -161,6 +195,10 @@ export default function RootLayout({
             `,
           }}
         />
+        <link rel="icon" href="/assets/logo-pixaura.jpg" />
+        <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" />
+        <link rel="shortcut icon" href="/assets/logo-pixaura.jpg" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
         {/* Only preload critical background image for mobile - NO VIDEO PRELOADS.
             backnoiree.png est servi en local (LOCAL_ONLY_PATHS), pas via Cloudinary. */}
         <link rel="preload" href={getAssetUrl("/Banque d_images/backnoiree.png", "image")} as="image" />

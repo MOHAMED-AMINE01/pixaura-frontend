@@ -81,7 +81,7 @@ export function Navbar() {
   ]
 
   const isHumindPage = pathname === "/humind"
-  const logoSrc = isHumindPage ? getAssetUrl("/Banque d_images/humind-white.png", "image") : getAssetUrl("/Banque d_images/PIXaura-soft white.png", "image")
+  const logoSrc = isHumindPage ? getAssetUrl("/Banque d_images/humind-white.png", "image") : "/assets/logo-pixaura.jpg"
   const logoAlt = isHumindPage ? "Humind Logo" : "Pixaura International Logo"
 
   const profileLinkClassName =
@@ -106,17 +106,17 @@ export function Navbar() {
         className={`relative mx-auto flex max-w-[1920px] items-center justify-between px-6 lg:px-16 transition-all duration-700 ${scrolled ? "py-1.5" : "py-3"
           }`}
       >
+        {/* Logo */}
         <a
           href="/?skipIntro=true"
-          className="transition-opacity duration-300 hover:opacity-80 cursor-pointer"
+          className="group flex items-center transition-all duration-300 hover:opacity-90"
           onClick={(e) => {
             e.preventDefault()
             const currentPath = window.location.pathname
             const isOnRealisationsOrHumind = currentPath === '/realisations' || currentPath === '/humind'
 
-            // Always redirect to home page and skip intro, go directly to Hero Section
             if (currentPath === "/") {
-              // If already on home page, just scroll to top (Hero Section)
+              // Smooth scroll to top on home page
               window.scrollTo({ top: 0, behavior: 'smooth' })
             } else {
               // Prevent white flash during navigation from realisations/humind
@@ -132,9 +132,13 @@ export function Navbar() {
           <Image
             src={logoSrc}
             alt={logoAlt}
-            width={180}
-            height={54}
-            className="h-10 w-auto object-contain mt-1"
+            width={isHumindPage ? 180 : 48}
+            height={isHumindPage ? 54 : 48}
+            className={
+              isHumindPage
+                ? "h-10 w-auto object-contain mt-1"
+                : "h-9 w-9 sm:h-10 sm:w-10 rounded-xl object-cover border border-white/15 shadow-[0_0_20px_rgba(69,123,247,0.3)] transition-transform duration-300 group-hover:scale-105"
+            }
             priority
           />
         </a>

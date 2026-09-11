@@ -106,12 +106,12 @@ export function ContactHomeSection() {
 
   return (
     <>
-    <section id="contact" className="relative py-32 px-6 overflow-hidden">
+    <section id="contact" className="relative pb-8 pt-1 sm:py-20 md:py-32 px-4 sm:px-6 overflow-hidden">
       <div className="max-w-7xl mx-auto">
         {/* Section 1: Envoyez-nous vos coordonnées */}
         <Reveal>
-          <div className="mb-32">
-            <div className="text-center mb-16">
+          <div className="mb-12 sm:mb-20 md:mb-32">
+            <div className="text-center mb-8 sm:mb-12 md:mb-16">
               <h2 className="text-4xl md:text-5xl font-black text-white mb-6" style={{ 
                 fontFamily: 'Montserrat, sans-serif',
                 letterSpacing: '-0.02em',
@@ -156,28 +156,35 @@ export function ContactHomeSection() {
             ) : (
               <div className="max-w-3xl mx-auto">
                 {/* Progress Bar */}
-                <div className="mb-8">
-                  <div className="flex items-center justify-between mb-4">
+                <div className="mb-8 flex justify-center w-full">
+                  <div className="flex items-center justify-center w-full max-w-[280px] xs:max-w-xs sm:max-w-md mx-auto">
                     {[...Array(totalSteps)].map((_, i) => (
-                      <div key={i} className="flex items-center flex-1">
-                        <div className="flex items-center justify-center w-10 h-10 rounded-full border-2 transition-all duration-300"
-                             style={{
-                               borderColor: currentStep > i + 1 ? '#0073FF' : currentStep === i + 1 ? '#0073FF' : 'rgba(255,255,255,0.2)',
-                               backgroundColor: currentStep > i + 1 ? '#0073FF' : currentStep === i + 1 ? '#0073FF' : 'transparent',
-                             }}>
+                      <div key={i} className={`flex items-center ${i < totalSteps - 1 ? 'flex-1' : 'shrink-0'}`}>
+                        <div
+                          className="flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-full border-2 transition-all duration-300 shrink-0"
+                          style={{
+                            borderColor: currentStep >= i + 1 ? '#0073FF' : 'rgba(255,255,255,0.2)',
+                            backgroundColor: currentStep >= i + 1 ? '#0073FF' : 'transparent',
+                          }}
+                        >
                           {currentStep > i + 1 ? (
-                            <Check className="w-5 h-5 text-white" />
+                            <Check className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
                           ) : (
-                            <span className="text-sm font-bold" style={{ color: currentStep === i + 1 ? '#fff' : 'rgba(255,255,255,0.5)' }}>
+                            <span
+                              className="text-xs sm:text-sm font-bold"
+                              style={{ color: currentStep === i + 1 ? '#fff' : 'rgba(255,255,255,0.5)' }}
+                            >
                               {i + 1}
                             </span>
                           )}
                         </div>
                         {i < totalSteps - 1 && (
-                          <div className="flex-1 h-0.5 mx-2 transition-all duration-300 rounded-full"
-                               style={{
-                                 backgroundColor: currentStep > i + 1 ? '#0073FF' : 'rgba(255,255,255,0.2)',
-                               }} />
+                          <div
+                            className="flex-1 h-0.5 mx-2 sm:mx-3 transition-all duration-300 rounded-full"
+                            style={{
+                              backgroundColor: currentStep > i + 1 ? '#0073FF' : 'rgba(255,255,255,0.2)',
+                            }}
+                          />
                         )}
                       </div>
                     ))}
@@ -400,7 +407,7 @@ export function ContactHomeSection() {
             )}
           </div>
         </Reveal>
-        <div className="relative mb-20 py-8">
+        <div className="relative mb-8 sm:mb-14 md:mb-20 py-4 sm:py-8">
           <div className="mx-auto max-w-7xl">
             <div className="relative h-px bg-gradient-to-r from-transparent via-white/25 to-transparent">
               <div className="absolute left-1/2 h-px w-32 -translate-x-1/2 bg-gradient-to-r from-blue-400/50 via-purple-400/70 to-cyan-400/50" />

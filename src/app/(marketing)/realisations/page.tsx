@@ -40,11 +40,11 @@ const projects = [
   },
   {
     id: 2,
-    title: "Mr Microbe — Projet Artistique & Thérapeutique",
+    title: "Mr Microbe — Projet Artistique",
     category: "Photo",
     formats: ["Photo", "Social", "Branding"],
     sector: "Artistes & Créateurs",
-    image: getAssetUrl("/Banque d_images/art1.jpg", "image"),
+    image: getAssetUrl("/assets/projet-artistique.jpg", "image"),
     video: null,
     shortDescription: "Il est né d'une solitude confinée, dans un carnet taché d'encre et d'anxiété. Chaque soir, pendant que le monde se refermait sur lui-même (Covid 2020), Maxime s'y réfugiait.",
     gallery: [
@@ -99,7 +99,7 @@ const projects = [
   },
   {
     id: 6,
-    title: "Vouvray/Chenin — Aménagement Sur-Mesure",
+    title: "Vouvray/Chenin — Aménagement Sur Mesure",
     category: "Photo",
     formats: ["Photo", "Branding"],
     sector: "Restauration",
@@ -111,9 +111,9 @@ const projects = [
       getAssetUrl("/Banque d_images/Copie de M7_09214.jpg", "image"),
       getAssetUrl("/Banque d_images/Copie de M7_09236.jpg", "image"),
     ],
-    objective: "Créer un aménagement sur-mesure inspiré du cépage Chenin de Vouvray, traduire les qualités du vin (pur, régulier, précis) dans l'aménagement du lieu, valoriser l'histoire et l'âme du vin.",
+    objective: "Créer un aménagement sur mesure inspiré du cépage Chenin de Vouvray, traduire les qualités du vin (pur, régulier, précis) dans l'aménagement du lieu, valoriser l'histoire et l'âme du vin.",
     creativeIdea: "Inspiration directe du cépage roi de Vouvray : le Chenin. Les lames de bois, toutes de la même taille, rappellent la régularité et la rigueur du travail du viticulteur. Le thème de la barrique s'invite dans la matière et la teinte, en écho à l'élevage traditionnel. Les niches dorées soulignent la pureté et la noblesse du Chenin.",
-    device: "Aménagement sur-mesure avec lames de bois, niches dorées, production Pixaura_IT en collaboration avec les artisans locaux.",
+    device: "Aménagement sur mesure avec lames de bois, niches dorées, production Pixaura_IT en collaboration avec les artisans locaux.",
     results: "Valorisation de l'histoire et de l'âme du vin, création d'un espace unique et premium, renforcement de l'identité de marque.",
   },
   {

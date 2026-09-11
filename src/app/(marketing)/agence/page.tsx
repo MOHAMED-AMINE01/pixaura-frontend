@@ -349,10 +349,9 @@ export default function AgencePage() {
 
                         {/* Content - Ultimate Premium Typography & Perfect Spacing */}
                         <div className="relative flex flex-col gap-6 sm:gap-8 z-10">
-                          {/* Ultimate Premium Badge - Extraordinary */}
-                          <span className="inline-flex w-fit items-center gap-3 sm:gap-3.5 rounded-full border-2 border-white/30 bg-gradient-to-r from-white/20 via-white/18 to-white/20 px-6 py-2.5 sm:px-8 sm:py-3 text-xs sm:text-sm font-extrabold uppercase tracking-[0.45em] sm:tracking-[0.5em] text-white shadow-[0_0_50px_rgba(89,129,255,0.45),0_0_80px_rgba(56,189,248,0.3),0_6px_20px_rgba(0,0,0,0.4)] backdrop-blur-2xl transition-all duration-500 group-hover:shadow-[0_0_60px_rgba(89,129,255,0.55),0_0_100px_rgba(56,189,248,0.4),0_8px_24px_rgba(0,0,0,0.5)] group-hover:border-white/40 group-hover:bg-gradient-to-r group-hover:from-white/25 group-hover:via-white/20 group-hover:to-white/25 group-hover:scale-105">
-                            <Sparkles className="h-4 w-4 sm:h-5 sm:w-5 text-sky-300 drop-shadow-[0_0_12px_rgba(56,189,248,0.8)] animate-pulse" style={{ animationDuration: '2s' }} />
-                            • FONDATEUR
+                          {/* Ultimate Premium Badge - Clean text only */}
+                          <span className="inline-flex w-fit items-center rounded-full border border-white/30 bg-gradient-to-r from-white/20 via-white/18 to-white/20 px-6 py-2.5 sm:px-8 sm:py-3 text-xs sm:text-sm font-extrabold uppercase tracking-[0.45em] sm:tracking-[0.5em] text-white shadow-[0_0_50px_rgba(89,129,255,0.45),0_0_80px_rgba(56,189,248,0.3),0_6px_20px_rgba(0,0,0,0.4)] backdrop-blur-2xl transition-all duration-500 group-hover:shadow-[0_0_60px_rgba(89,129,255,0.55),0_0_100px_rgba(56,189,248,0.4),0_8px_24px_rgba(0,0,0,0.5)] group-hover:border-white/40 group-hover:bg-gradient-to-r group-hover:from-white/25 group-hover:via-white/20 group-hover:to-white/25 group-hover:scale-105">
+                            FONDATEUR
                           </span>
                           
                           {/* Ultimate Premium Name - Extra Large & Beautiful */}

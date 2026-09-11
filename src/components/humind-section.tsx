@@ -50,7 +50,7 @@ export function HumindSection() {
 
   return (
     <>
-      <section id="humind" className="humind-section relative overflow-hidden py-24 px-6 md:py-32">
+      <section id="humind" className="humind-section relative overflow-hidden pb-6 pt-1 sm:py-16 md:py-32 px-4 sm:px-6">
       {/* Premium background effects */}
       <div className="humind-bg absolute inset-0 opacity-30" />
       <div className="humind-glow absolute inset-0 opacity-20" />
@@ -66,7 +66,7 @@ export function HumindSection() {
         }}
       />
       
-      <div className="mx-auto relative z-10 flex max-w-6xl flex-col gap-12 text-white lg:grid lg:grid-cols-[1.3fr_1fr] lg:items-start lg:gap-16">
+      <div className="mx-auto relative z-10 flex max-w-6xl flex-col gap-6 sm:gap-12 text-white lg:grid lg:grid-cols-[1.3fr_1fr] lg:items-start lg:gap-16">
         {/* Content section - Desktop: left column, Mobile: order-3 (after badge and image) */}
         <div className="space-y-8 lg:space-y-10 order-3 lg:order-none">
           {/* Humind Badge - Desktop: visible, Mobile: hidden (shown separately above) */}

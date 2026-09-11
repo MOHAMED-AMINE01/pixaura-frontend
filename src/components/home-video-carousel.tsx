@@ -12,7 +12,7 @@ export function HomeVideoCarousel() {
     id: 2,
     title: t("portfolio.carouselSlide2Title"),
     description: t("portfolio.carouselSlide2Description"),
-    video: getAssetUrl("/Banque d_images/rally1.mp4", "video"),
+    video: "/assets/performance-automobile.mp4",
     tags: [t("portfolio.carouselSlide2Tag1"), t("portfolio.carouselSlide2Tag2"), t("portfolio.carouselSlide2Tag3")],
   }), [t])
 
@@ -45,6 +45,16 @@ export function HomeVideoCarousel() {
   useEffect(() => {
     if (!sectionRef1.current) return
 
+    const checkVisibility = () => {
+      if (!sectionRef1.current) return
+      const rect = sectionRef1.current.getBoundingClientRect()
+      if (rect.top < window.innerHeight + 300 && rect.bottom > -300) {
+        setIsVisible1(true)
+      }
+    }
+
+    checkVisibility()
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -55,8 +65,8 @@ export function HomeVideoCarousel() {
         })
       },
       {
-        threshold: 0.1,
-        rootMargin: '0px',
+        threshold: 0.05,
+        rootMargin: '200px',
       }
     )
 
@@ -71,6 +81,16 @@ export function HomeVideoCarousel() {
   useEffect(() => {
     if (!sectionRef2.current) return
 
+    const checkVisibility = () => {
+      if (!sectionRef2.current) return
+      const rect = sectionRef2.current.getBoundingClientRect()
+      if (rect.top < window.innerHeight + 300 && rect.bottom > -300) {
+        setIsVisible2(true)
+      }
+    }
+
+    checkVisibility()
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -81,8 +101,8 @@ export function HomeVideoCarousel() {
         })
       },
       {
-        threshold: 0.1,
-        rootMargin: '0px',
+        threshold: 0.05,
+        rootMargin: '200px',
       }
     )
 
@@ -249,7 +269,7 @@ export function HomeVideoCarousel() {
   ) => (
     <div
       ref={sectionRef}
-      className="relative min-h-[85vh] w-full overflow-hidden py-8"
+      className="relative min-h-0 sm:min-h-[70vh] lg:min-h-[85vh] w-full overflow-hidden py-4 sm:py-8"
     >
       {/* Main Container */}
       <div
@@ -319,38 +339,44 @@ export function HomeVideoCarousel() {
 
           {/* Center - Video Frame */}
           <div
-            className={`relative order-1 lg:order-2 transition-all duration-[2500ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${isVisible
+            className={`relative order-1 lg:order-2 w-full min-h-[300px] flex items-center justify-center transition-all duration-[2500ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${isVisible
                 ? 'opacity-100 translate-y-0 scale-100'
                 : 'opacity-0 translate-y-20 scale-90'
               }`}
           >
             {/* Glow Effects - Static (no animations) */}
-            <div className="absolute -inset-8 rounded-[44px] bg-gradient-to-r from-cyan-400/12 via-white/18 to-purple-400/12 opacity-80 blur-3xl" />
-            <div className="absolute -inset-6 rounded-[40px] bg-gradient-to-br from-white/15 via-cyan-500/12 to-purple-500/12 blur-2xl" />
-            <div className="absolute -inset-4 rounded-[36px] bg-gradient-to-t from-white/12 via-transparent to-white/12 blur-xl" />
-            <div className="absolute -inset-3 rounded-[32px] bg-gradient-to-r from-cyan-500/20 via-transparent to-purple-500/20 blur-lg opacity-70" />
-            <div className="absolute -inset-2 rounded-[28px] bg-gradient-to-br from-cyan-300/15 via-transparent to-purple-300/15 blur-md" />
+            <div className="absolute -inset-8 rounded-[44px] bg-gradient-to-r from-cyan-400/12 via-white/18 to-purple-400/12 opacity-80 blur-3xl pointer-events-none" />
+            <div className="absolute -inset-6 rounded-[40px] bg-gradient-to-br from-white/15 via-cyan-500/12 to-purple-500/12 blur-2xl pointer-events-none" />
+            <div className="absolute -inset-4 rounded-[36px] bg-gradient-to-t from-white/12 via-transparent to-white/12 blur-xl pointer-events-none" />
+            <div className="absolute -inset-3 rounded-[32px] bg-gradient-to-r from-cyan-500/20 via-transparent to-purple-500/20 blur-lg opacity-70 pointer-events-none" />
+            <div className="absolute -inset-2 rounded-[28px] bg-gradient-to-br from-cyan-300/15 via-transparent to-purple-300/15 blur-md pointer-events-none" />
 
-            <div className="relative aspect-[16/10] w-full overflow-hidden rounded-3xl bg-black shadow-[0_0_150px_rgba(0,0,0,0.95),0_50px_120px_rgba(0,0,0,0.9),inset_0_0_0_2.5px_rgba(255,255,255,0.25)]">
+            <div className="relative aspect-video lg:aspect-[16/10] w-full h-full min-h-[300px] sm:min-h-[360px] md:min-h-[420px] lg:min-h-[460px] overflow-hidden rounded-3xl bg-black shadow-[0_0_150px_rgba(0,0,0,0.95),0_50px_120px_rgba(0,0,0,0.9),inset_0_0_0_2.5px_rgba(255,255,255,0.25)]">
               {/* Borders */}
-              <div className="absolute inset-0 rounded-3xl border-[3px] border-white/35" />
-              <div className="absolute inset-[1px] rounded-3xl border-[2px] border-white/25" />
-              <div className="absolute inset-[3px] rounded-3xl border-[1.5px] border-white/15" />
-              <div className="absolute inset-[5px] rounded-3xl border border-white/10" />
-              <div className="absolute inset-[7px] rounded-3xl border border-cyan-500/20" />
+              <div className="absolute inset-0 rounded-3xl border-[3px] border-white/35 pointer-events-none z-10" />
+              <div className="absolute inset-[1px] rounded-3xl border-[2px] border-white/25 pointer-events-none z-10" />
+              <div className="absolute inset-[3px] rounded-3xl border-[1.5px] border-white/15 pointer-events-none z-10" />
+              <div className="absolute inset-[5px] rounded-3xl border border-white/10 pointer-events-none z-10" />
+              <div className="absolute inset-[7px] rounded-3xl border border-cyan-500/20 pointer-events-none z-10" />
 
               {/* Video */}
-              <div className="absolute inset-0">
-                <div className="absolute inset-0 flex items-center justify-center bg-black">
+              <div className="absolute inset-0 h-full w-full">
+                <div className="absolute inset-0 h-full w-full flex items-center justify-center bg-black overflow-hidden">
                   <video
                     ref={videoRef}
-                    className="h-full w-full object-contain"
+                    className="h-full w-full min-h-full min-w-full object-cover"
+                    autoPlay
+                    muted
                     loop
                     playsInline
                     src={slide.video}
                     preload="auto"
                     onCanPlay={handleCanPlay}
+                    onLoadedData={handleCanPlay}
                     style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
                       transform: 'translateZ(0)',
                     }}
                   />
@@ -358,15 +384,15 @@ export function HomeVideoCarousel() {
               </div>
 
               {/* Light Accents */}
-              <div className="absolute top-0 left-0 h-64 w-64 bg-gradient-to-br from-white/20 via-cyan-400/10 to-transparent rounded-tl-3xl" />
-              <div className="absolute top-0 right-0 h-64 w-64 bg-gradient-to-bl from-white/20 via-purple-400/10 to-transparent rounded-tr-3xl" />
-              <div className="absolute bottom-0 left-0 h-48 w-48 bg-gradient-to-tr from-cyan-400/8 to-transparent rounded-bl-3xl" />
-              <div className="absolute bottom-0 right-0 h-48 w-48 bg-gradient-to-tl from-purple-400/8 to-transparent rounded-br-3xl" />
+              <div className="absolute top-0 left-0 h-64 w-64 bg-gradient-to-br from-white/20 via-cyan-400/10 to-transparent rounded-tl-3xl pointer-events-none z-10" />
+              <div className="absolute top-0 right-0 h-64 w-64 bg-gradient-to-bl from-white/20 via-purple-400/10 to-transparent rounded-tr-3xl pointer-events-none z-10" />
+              <div className="absolute bottom-0 left-0 h-48 w-48 bg-gradient-to-tr from-cyan-400/8 to-transparent rounded-bl-3xl pointer-events-none z-10" />
+              <div className="absolute bottom-0 right-0 h-48 w-48 bg-gradient-to-tl from-purple-400/8 to-transparent rounded-br-3xl pointer-events-none z-10" />
 
-              <div className="absolute top-0 left-0 h-48 w-48 bg-gradient-to-br from-cyan-400/25 via-cyan-300/15 to-transparent rounded-tl-3xl" />
-              <div className="absolute top-0 right-0 h-48 w-48 bg-gradient-to-bl from-purple-400/25 via-purple-300/15 to-transparent rounded-tr-3xl" />
-              <div className="absolute bottom-0 left-0 h-40 w-40 bg-gradient-to-tr from-cyan-400/20 via-transparent to-transparent rounded-bl-3xl" />
-              <div className="absolute bottom-0 right-0 h-40 w-40 bg-gradient-to-tl from-purple-400/20 via-transparent to-transparent rounded-br-3xl" />
+              <div className="absolute top-0 left-0 h-48 w-48 bg-gradient-to-br from-cyan-400/25 via-cyan-300/15 to-transparent rounded-tl-3xl pointer-events-none z-10" />
+              <div className="absolute top-0 right-0 h-48 w-48 bg-gradient-to-bl from-purple-400/25 via-purple-300/15 to-transparent rounded-tr-3xl pointer-events-none z-10" />
+              <div className="absolute bottom-0 left-0 h-40 w-40 bg-gradient-to-tr from-cyan-400/20 via-transparent to-transparent rounded-bl-3xl pointer-events-none z-10" />
+              <div className="absolute bottom-0 right-0 h-40 w-40 bg-gradient-to-tl from-purple-400/20 via-transparent to-transparent rounded-br-3xl pointer-events-none z-10" />
 
               <div className="absolute inset-0 bg-gradient-to-t from-black/12 via-transparent to-transparent pointer-events-none z-20" />
 
@@ -489,7 +515,7 @@ export function HomeVideoCarousel() {
       )}
 
       {/* Decorative Separator */}
-      <div className="relative w-full py-12 overflow-hidden">
+      <div className="relative w-full py-4 sm:py-8 md:py-12 overflow-hidden">
         {/* Animated gradient line */}
         <div className="relative h-[2px] w-full">
           {/* Main gradient line */}
